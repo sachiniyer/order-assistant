@@ -1,0 +1,6372 @@
+[
+	{
+		"itemName": "Buffalo Chicken Wings",
+		"itemType": "main - meal option",
+		"description": "",
+		"options": {
+			"size": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"6 piece": {
+						"price": 6.99
+					},
+					"10 piece": {
+						"price": 9.99
+					},
+					"15 piece": {
+						"price": 14.99
+					},
+					"20 piece": {
+						"price": 18.99
+					}
+				}
+			},
+			"sauce": {
+				"required": true,
+				"minimum": 0,
+				"maximum": 3,
+				"choices": {
+					"ranch": {
+						"price": 0
+					},
+					"honey mustard": {
+						"price": 0
+					},
+					"buffalo": {
+						"price": 0
+					}
+				}
+			},
+			"meal option": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"a la carte": {
+						"price": 0
+					},
+					"meal": {
+						"price": 6
+					}
+				}
+			},
+			"side options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "regular fries",
+				"choices": {
+					"regular fries": {
+						"price": 0
+					},
+					"chili fries": {
+						"price": 1.65
+					},
+					"chili cheese fries": {
+						"price": 2.64
+					},
+					"onion chips": {
+						"price": 0
+					},
+					"chriscut fries": {
+						"price": 1.18
+					},
+					"garlic fries": {
+						"price": 2.4
+					},
+					"sweet potato fries": {
+						"price": 1.4
+					}
+				}
+			},
+			"drink options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"apple juice": {
+						"price": 0
+					},
+					"arnold palmer": {
+						"price": 0
+					},
+					"banana shake": {
+						"price": 3.23
+					},
+					"barqs root beer": {
+						"price": 0
+					},
+					"bottled water": {
+						"price": 0
+					},
+					"caramel frappucino": {
+						"price": 2.91
+					},
+					"cherry coke": {
+						"price": 0
+					},
+					"chocolate milk": {
+						"price": 0
+					},
+					"chocolate shake": {
+						"price": 3.23
+					},
+					"coffee": {
+						"price": 0
+					},
+					"coke": {
+						"price": 0
+					},
+					"diet coke": {
+						"price": 0
+					},
+					"fanta": {
+						"price": 0
+					},
+					"frappucino": {
+						"price": 2.45
+					},
+					"iced coffee": {
+						"price": 0
+					},
+					"lemonade": {
+						"price": 0
+					},
+					"mango shake": {
+						"price": 4.12
+					},
+					"mango smoothie": {
+						"price": 3.32
+					},
+					"milk": {
+						"price": 0
+					},
+					"mocha frappucino": {
+						"price": 2.91
+					},
+					"mr pibb": {
+						"price": 0
+					},
+					"neopolitan shake": {
+						"price": 4.26
+					},
+					"powerade": {
+						"price": 0
+					},
+					"raspberry tea": {
+						"price": 0
+					},
+					"redbull": {
+						"price": 0.63
+					},
+					"rockstar": {
+						"price": 0.63
+					},
+					"rootbeer float": {
+						"price": 2.32
+					},
+					"rootbeer shake": {
+						"price": 3.23
+					},
+					"sprite": {
+						"price": 0
+					},
+					"strawberry shake": {
+						"price": 3.23
+					},
+					"strawberry smoothie": {
+						"price": 3.32
+					},
+					"unsweetened tea": {
+						"price": 0
+					},
+					"vanilla shake": {
+						"price": 3.23
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Plain Classic Hot Dog",
+		"itemType": "main - meal option",
+		"description": "A plain hot dog with just a bun",
+		"options": {
+			"customizations": {
+				"required": false,
+				"minimum": 0,
+				"maximum": 14,
+				"choices": {
+					"american cheese": {
+						"price": 1.23
+					},
+					"cheddar cheese": {
+						"price": 1.23
+					},
+					"swiss cheese": {
+						"price": 1.23
+					},
+					"barbecue sauce": {
+						"price": 0
+					},
+					"brown mustard": {
+						"price": 0
+					},
+					"ketchup": {
+						"price": 0
+					},
+					"marinara sauce": {
+						"price": 0
+					},
+					"mayo": {
+						"price": 0
+					},
+					"mustard": {
+						"price": 0
+					},
+					"ranch": {
+						"price": 0
+					},
+					"relish": {
+						"price": 0
+					},
+					"thousand island": {
+						"price": 0
+					},
+					"bacon": {
+						"price": 1.59
+					},
+					"bell peppers": {
+						"price": 0
+					},
+					"celery salt": {
+						"price": 0
+					},
+					"chili": {
+						"price": 1.23
+					},
+					"chili peppers": {
+						"price": 0
+					},
+					"grilled onions": {
+						"price": 0
+					},
+					"grilled bell peppers": {
+						"price": 0
+					},
+					"jalapeño": {
+						"price": 0.73
+					},
+					"lettuce": {
+						"price": 0
+					},
+					"mushrooms": {
+						"price": 1.23
+					},
+					"onions": {
+						"price": 0
+					},
+					"pickles": {
+						"price": 0.39
+					},
+					"pineapple": {
+						"price": 0
+					},
+					"sauerkraut": {
+						"price": 0.91
+					},
+					"tomatoes": {
+						"price": 0.39
+					},
+					"chipotle aioli": {
+						"price": 0
+					},
+					"citrus pineapple aioli": {
+						"price": 0
+					},
+					"garlic pesto aioli": {
+						"price": 0
+					}
+				},
+				"modifiers": [
+					"add",
+					"easy",
+					"extra",
+					"no"
+				]
+			},
+			"meal option": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"a la carte": {
+						"price": 7.46
+					},
+					"meal": {
+						"price": 13.46
+					}
+				}
+			},
+			"side options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "regular fries",
+				"choices": {
+					"regular fries": {
+						"price": 0
+					},
+					"chili fries": {
+						"price": 1.65
+					},
+					"chili cheese fries": {
+						"price": 2.64
+					},
+					"onion chips": {
+						"price": 0
+					},
+					"chriscut fries": {
+						"price": 1.18
+					},
+					"garlic fries": {
+						"price": 2.4
+					},
+					"sweet potato fries": {
+						"price": 1.4
+					}
+				}
+			},
+			"drink options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"apple juice": {
+						"price": 0
+					},
+					"arnold palmer": {
+						"price": 0
+					},
+					"banana shake": {
+						"price": 3.23
+					},
+					"barqs root beer": {
+						"price": 0
+					},
+					"bottled water": {
+						"price": 0
+					},
+					"caramel frappucino": {
+						"price": 2.91
+					},
+					"cherry coke": {
+						"price": 0
+					},
+					"chocolate milk": {
+						"price": 0
+					},
+					"chocolate shake": {
+						"price": 3.23
+					},
+					"coffee": {
+						"price": 0
+					},
+					"coke": {
+						"price": 0
+					},
+					"diet coke": {
+						"price": 0
+					},
+					"fanta": {
+						"price": 0
+					},
+					"frappucino": {
+						"price": 2.45
+					},
+					"iced coffee": {
+						"price": 0
+					},
+					"lemonade": {
+						"price": 0
+					},
+					"mango shake": {
+						"price": 4.12
+					},
+					"mango smoothie": {
+						"price": 3.32
+					},
+					"milk": {
+						"price": 0
+					},
+					"mocha frappucino": {
+						"price": 2.91
+					},
+					"mr pibb": {
+						"price": 0
+					},
+					"neopolitan shake": {
+						"price": 4.26
+					},
+					"powerade": {
+						"price": 0
+					},
+					"raspberry tea": {
+						"price": 0
+					},
+					"redbull": {
+						"price": 0.63
+					},
+					"rockstar": {
+						"price": 0.63
+					},
+					"rootbeer float": {
+						"price": 2.32
+					},
+					"rootbeer shake": {
+						"price": 3.23
+					},
+					"sprite": {
+						"price": 0
+					},
+					"strawberry shake": {
+						"price": 3.23
+					},
+					"strawberry smoothie": {
+						"price": 3.32
+					},
+					"unsweetened tea": {
+						"price": 0
+					},
+					"vanilla shake": {
+						"price": 3.23
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Classic Hot Dog",
+		"itemType": "main - meal option",
+		"description": "Classic hot dog with mustard, relish, onions, and tomatoes.",
+		"options": {
+			"customizations": {
+				"required": true,
+				"minimum": 0,
+				"maximum": 14,
+				"choices": {
+					"american cheese": {
+						"price": 1.23
+					},
+					"cheddar cheese": {
+						"price": 1.23
+					},
+					"swiss cheese": {
+						"price": 1.23
+					},
+					"barbecue sauce": {
+						"price": 0
+					},
+					"brown mustard": {
+						"price": 0
+					},
+					"ketchup": {
+						"price": 0
+					},
+					"marinara sauce": {
+						"price": 0
+					},
+					"mayo": {
+						"price": 0
+					},
+					"mustard": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"ranch": {
+						"price": 0
+					},
+					"relish": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"thousand island": {
+						"price": 0
+					},
+					"bacon": {
+						"price": 1.59
+					},
+					"bell peppers": {
+						"price": 0
+					},
+					"celery salt": {
+						"price": 0
+					},
+					"chili": {
+						"price": 1.23
+					},
+					"chili peppers": {
+						"price": 0
+					},
+					"grilled onions": {
+						"price": 0
+					},
+					"grilled bell peppers": {
+						"price": 0
+					},
+					"jalapeño": {
+						"price": 0.73
+					},
+					"lettuce": {
+						"price": 0
+					},
+					"mushrooms": {
+						"price": 1.23
+					},
+					"onions": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"pickles": {
+						"price": 0.39
+					},
+					"pineapple": {
+						"price": 0
+					},
+					"sauerkraut": {
+						"price": 0.91
+					},
+					"tomatoes": {
+						"price": 0.39,
+						"isBaseIngredient": true
+					},
+					"chipotle aioli": {
+						"price": 0
+					},
+					"citrus pineapple aioli": {
+						"price": 0
+					},
+					"garlic pesto aioli": {
+						"price": 0
+					}
+				},
+				"modifiers": [
+					"add",
+					"easy",
+					"extra",
+					"no"
+				]
+			},
+			"meal option": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"a la carte": {
+						"price": 7.46
+					},
+					"meal": {
+						"price": 13.46
+					}
+				}
+			},
+			"side options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "regular fries",
+				"choices": {
+					"regular fries": {
+						"price": 0
+					},
+					"chili fries": {
+						"price": 1.65
+					},
+					"chili cheese fries": {
+						"price": 2.64
+					},
+					"onion chips": {
+						"price": 0
+					},
+					"chriscut fries": {
+						"price": 1.18
+					},
+					"garlic fries": {
+						"price": 2.4
+					},
+					"sweet potato fries": {
+						"price": 1.4
+					}
+				}
+			},
+			"drink options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"apple juice": {
+						"price": 0
+					},
+					"arnold palmer": {
+						"price": 0
+					},
+					"banana shake": {
+						"price": 3.23
+					},
+					"barqs root beer": {
+						"price": 0
+					},
+					"bottled water": {
+						"price": 0
+					},
+					"caramel frappucino": {
+						"price": 2.91
+					},
+					"cherry coke": {
+						"price": 0
+					},
+					"chocolate milk": {
+						"price": 0
+					},
+					"chocolate shake": {
+						"price": 3.23
+					},
+					"coffee": {
+						"price": 0
+					},
+					"coke": {
+						"price": 0
+					},
+					"diet coke": {
+						"price": 0
+					},
+					"fanta": {
+						"price": 0
+					},
+					"frappucino": {
+						"price": 2.45
+					},
+					"iced coffee": {
+						"price": 0
+					},
+					"lemonade": {
+						"price": 0
+					},
+					"mango shake": {
+						"price": 4.12
+					},
+					"mango smoothie": {
+						"price": 3.32
+					},
+					"milk": {
+						"price": 0
+					},
+					"mocha frappucino": {
+						"price": 2.91
+					},
+					"mr pibb": {
+						"price": 0
+					},
+					"neopolitan shake": {
+						"price": 4.26
+					},
+					"powerade": {
+						"price": 0
+					},
+					"raspberry tea": {
+						"price": 0
+					},
+					"redbull": {
+						"price": 0.63
+					},
+					"rockstar": {
+						"price": 0.63
+					},
+					"rootbeer float": {
+						"price": 2.32
+					},
+					"rootbeer shake": {
+						"price": 3.23
+					},
+					"sprite": {
+						"price": 0
+					},
+					"strawberry shake": {
+						"price": 3.23
+					},
+					"strawberry smoothie": {
+						"price": 3.32
+					},
+					"unsweetened tea": {
+						"price": 0
+					},
+					"vanilla shake": {
+						"price": 3.23
+					}
+				}
+			},
+			"upgrade": {
+				"required": false,
+				"minimum": 0,
+				"maximum": 1,
+				"choices": {
+					"supersize meal": {
+						"price": 1
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Chicago Dog",
+		"itemType": "main - meal option",
+		"description": "Chicago dog with mustard, relish, tomatoes, chili peppers, pickle, and celery salt.",
+		"options": {
+			"customizations": {
+				"required": true,
+				"minimum": 0,
+				"maximum": 14,
+				"choices": {
+					"american cheese": {
+						"price": 1.23
+					},
+					"cheddar cheese": {
+						"price": 1.23
+					},
+					"swiss cheese": {
+						"price": 1.23
+					},
+					"barbecue sauce": {
+						"price": 0
+					},
+					"brown mustard": {
+						"price": 0
+					},
+					"ketchup": {
+						"price": 0
+					},
+					"marinara sauce": {
+						"price": 0
+					},
+					"mayo": {
+						"price": 0
+					},
+					"mustard": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"ranch": {
+						"price": 0
+					},
+					"relish": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"thousand island": {
+						"price": 0
+					},
+					"bacon": {
+						"price": 1.59
+					},
+					"bell peppers": {
+						"price": 0
+					},
+					"celery salt": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"chili": {
+						"price": 1.23
+					},
+					"chili peppers": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"grilled onions": {
+						"price": 0
+					},
+					"grilled bell peppers": {
+						"price": 0
+					},
+					"jalapeño": {
+						"price": 0.73
+					},
+					"lettuce": {
+						"price": 0
+					},
+					"mushrooms": {
+						"price": 1.23
+					},
+					"onions": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"pickles": {
+						"price": 0.39,
+						"isBaseIngredient": true
+					},
+					"pineapple": {
+						"price": 0
+					},
+					"sauerkraut": {
+						"price": 0.91
+					},
+					"tomatoes": {
+						"price": 0.39,
+						"isBaseIngredient": true
+					},
+					"chipotle aioli": {
+						"price": 0
+					},
+					"citrus pineapple aioli": {
+						"price": 0
+					},
+					"garlic pesto aioli": {
+						"price": 0
+					}
+				},
+				"modifiers": [
+					"add",
+					"easy",
+					"extra",
+					"no"
+				]
+			},
+			"meal option": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"a la carte": {
+						"price": 8.42
+					},
+					"meal": {
+						"price": 14.42
+					}
+				}
+			},
+			"side options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "regular fries",
+				"choices": {
+					"regular fries": {
+						"price": 0
+					},
+					"chili fries": {
+						"price": 1.65
+					},
+					"chili cheese fries": {
+						"price": 2.64
+					},
+					"onion chips": {
+						"price": 0
+					},
+					"chriscut fries": {
+						"price": 1.18
+					},
+					"garlic fries": {
+						"price": 2.4
+					},
+					"sweet potato fries": {
+						"price": 1.4
+					}
+				}
+			},
+			"drink options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"apple juice": {
+						"price": 0
+					},
+					"arnold palmer": {
+						"price": 0
+					},
+					"banana shake": {
+						"price": 3.23
+					},
+					"barqs root beer": {
+						"price": 0
+					},
+					"bottled water": {
+						"price": 0
+					},
+					"caramel frappucino": {
+						"price": 2.91
+					},
+					"cherry coke": {
+						"price": 0
+					},
+					"chocolate milk": {
+						"price": 0
+					},
+					"chocolate shake": {
+						"price": 3.23
+					},
+					"coffee": {
+						"price": 0
+					},
+					"coke": {
+						"price": 0
+					},
+					"diet coke": {
+						"price": 0
+					},
+					"fanta": {
+						"price": 0
+					},
+					"frappucino": {
+						"price": 2.45
+					},
+					"iced coffee": {
+						"price": 0
+					},
+					"lemonade": {
+						"price": 0
+					},
+					"mango shake": {
+						"price": 4.12
+					},
+					"mango smoothie": {
+						"price": 3.32
+					},
+					"milk": {
+						"price": 0
+					},
+					"mocha frappucino": {
+						"price": 2.91
+					},
+					"mr pibb": {
+						"price": 0
+					},
+					"neopolitan shake": {
+						"price": 4.26
+					},
+					"powerade": {
+						"price": 0
+					},
+					"raspberry tea": {
+						"price": 0
+					},
+					"redbull": {
+						"price": 0.63
+					},
+					"rockstar": {
+						"price": 0.63
+					},
+					"rootbeer float": {
+						"price": 2.32
+					},
+					"rootbeer shake": {
+						"price": 3.23
+					},
+					"sprite": {
+						"price": 0
+					},
+					"strawberry shake": {
+						"price": 3.23
+					},
+					"strawberry smoothie": {
+						"price": 3.32
+					},
+					"unsweetened tea": {
+						"price": 0
+					},
+					"vanilla shake": {
+						"price": 3.23
+					}
+				}
+			},
+			"upgrade": {
+				"required": false,
+				"minimum": 0,
+				"maximum": 1,
+				"choices": {
+					"supersize meal": {
+						"price": 1
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Chili Dog",
+		"itemType": "main - meal option",
+		"description": "Chili dog with options for cheese additions.",
+		"options": {
+			"customizations": {
+				"required": true,
+				"minimum": 0,
+				"maximum": 14,
+				"choices": {
+					"american cheese": {
+						"price": 1.23
+					},
+					"cheddar cheese": {
+						"price": 1.23
+					},
+					"swiss cheese": {
+						"price": 1.23
+					},
+					"barbecue sauce": {
+						"price": 0
+					},
+					"brown mustard": {
+						"price": 0
+					},
+					"ketchup": {
+						"price": 0
+					},
+					"marinara sauce": {
+						"price": 0
+					},
+					"mayo": {
+						"price": 0
+					},
+					"mustard": {
+						"price": 0
+					},
+					"ranch": {
+						"price": 0
+					},
+					"relish": {
+						"price": 0
+					},
+					"thousand island": {
+						"price": 0
+					},
+					"bacon": {
+						"price": 1.59
+					},
+					"bell peppers": {
+						"price": 0
+					},
+					"celery salt": {
+						"price": 0
+					},
+					"chili": {
+						"price": 1.23
+					},
+					"chili peppers": {
+						"price": 0
+					},
+					"grilled onions": {
+						"price": 0
+					},
+					"grilled bell peppers": {
+						"price": 0
+					},
+					"jalapeño": {
+						"price": 0.73
+					},
+					"lettuce": {
+						"price": 0
+					},
+					"mushrooms": {
+						"price": 1.23
+					},
+					"onions": {
+						"price": 0
+					},
+					"pickles": {
+						"price": 0.39
+					},
+					"pineapple": {
+						"price": 0
+					},
+					"sauerkraut": {
+						"price": 0.91
+					},
+					"tomatoes": {
+						"price": 0.39
+					},
+					"chipotle aioli": {
+						"price": 0
+					},
+					"citrus pineapple aioli": {
+						"price": 0
+					},
+					"garlic pesto aioli": {
+						"price": 0
+					}
+				},
+				"modifiers": [
+					"add",
+					"easy",
+					"extra",
+					"no"
+				]
+			},
+			"meal option": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"a la carte": {
+						"price": 8.1
+					},
+					"meal": {
+						"price": 14.1
+					}
+				}
+			},
+			"side options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "regular fries",
+				"choices": {
+					"regular fries": {
+						"price": 0
+					},
+					"chili fries": {
+						"price": 1.65
+					},
+					"chili cheese fries": {
+						"price": 2.64
+					},
+					"onion chips": {
+						"price": 0
+					},
+					"chriscut fries": {
+						"price": 1.18
+					},
+					"garlic fries": {
+						"price": 2.4
+					},
+					"sweet potato fries": {
+						"price": 1.4
+					}
+				}
+			},
+			"drink options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"apple juice": {
+						"price": 0
+					},
+					"arnold palmer": {
+						"price": 0
+					},
+					"banana shake": {
+						"price": 3.23
+					},
+					"barqs root beer": {
+						"price": 0
+					},
+					"bottled water": {
+						"price": 0
+					},
+					"caramel frappucino": {
+						"price": 2.91
+					},
+					"cherry coke": {
+						"price": 0
+					},
+					"chocolate milk": {
+						"price": 0
+					},
+					"chocolate shake": {
+						"price": 3.23
+					},
+					"coffee": {
+						"price": 0
+					},
+					"coke": {
+						"price": 0
+					},
+					"diet coke": {
+						"price": 0
+					},
+					"fanta": {
+						"price": 0
+					},
+					"frappucino": {
+						"price": 2.45
+					},
+					"iced coffee": {
+						"price": 0
+					},
+					"lemonade": {
+						"price": 0
+					},
+					"mango shake": {
+						"price": 4.12
+					},
+					"mango smoothie": {
+						"price": 3.32
+					},
+					"milk": {
+						"price": 0
+					},
+					"mocha frappucino": {
+						"price": 2.91
+					},
+					"mr pibb": {
+						"price": 0
+					},
+					"neopolitan shake": {
+						"price": 4.26
+					},
+					"powerade": {
+						"price": 0
+					},
+					"raspberry tea": {
+						"price": 0
+					},
+					"redbull": {
+						"price": 0.63
+					},
+					"rockstar": {
+						"price": 0.63
+					},
+					"rootbeer float": {
+						"price": 2.32
+					},
+					"rootbeer shake": {
+						"price": 3.23
+					},
+					"sprite": {
+						"price": 0
+					},
+					"strawberry shake": {
+						"price": 3.23
+					},
+					"strawberry smoothie": {
+						"price": 3.32
+					},
+					"unsweetened tea": {
+						"price": 0
+					},
+					"vanilla shake": {
+						"price": 3.23
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Bratwurst Dog",
+		"itemType": "main - meal option",
+		"description": "Bratwurst with brown mustard.",
+		"options": {
+			"customizations": {
+				"required": true,
+				"minimum": 0,
+				"maximum": 14,
+				"choices": {
+					"american cheese": {
+						"price": 1.23
+					},
+					"cheddar cheese": {
+						"price": 1.23
+					},
+					"swiss cheese": {
+						"price": 1.23
+					},
+					"barbecue sauce": {
+						"price": 0
+					},
+					"brown mustard": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"ketchup": {
+						"price": 0
+					},
+					"marinara sauce": {
+						"price": 0
+					},
+					"mayo": {
+						"price": 0
+					},
+					"mustard": {
+						"price": 0
+					},
+					"ranch": {
+						"price": 0
+					},
+					"relish": {
+						"price": 0
+					},
+					"thousand island": {
+						"price": 0
+					},
+					"bacon": {
+						"price": 1.59
+					},
+					"bell peppers": {
+						"price": 0
+					},
+					"celery salt": {
+						"price": 0
+					},
+					"chili": {
+						"price": 1.23
+					},
+					"chili peppers": {
+						"price": 0
+					},
+					"grilled onions": {
+						"price": 0
+					},
+					"grilled bell peppers": {
+						"price": 0
+					},
+					"jalapeño": {
+						"price": 0.73
+					},
+					"lettuce": {
+						"price": 0
+					},
+					"mushrooms": {
+						"price": 1.23
+					},
+					"onions": {
+						"price": 0
+					},
+					"pickles": {
+						"price": 0.39
+					},
+					"pineapple": {
+						"price": 0
+					},
+					"sauerkraut": {
+						"price": 0.91
+					},
+					"tomatoes": {
+						"price": 0.39
+					},
+					"chipotle aioli": {
+						"price": 0
+					},
+					"citrus pineapple aioli": {
+						"price": 0
+					},
+					"garlic pesto aioli": {
+						"price": 0
+					}
+				},
+				"modifiers": [
+					"add",
+					"easy",
+					"extra",
+					"no"
+				]
+			},
+			"meal option": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"a la carte": {
+						"price": 8.1
+					},
+					"meal": {
+						"price": 14.1
+					}
+				}
+			},
+			"side options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "regular fries",
+				"choices": {
+					"regular fries": {
+						"price": 0
+					},
+					"chili fries": {
+						"price": 1.65
+					},
+					"chili cheese fries": {
+						"price": 2.64
+					},
+					"onion chips": {
+						"price": 0
+					},
+					"chriscut fries": {
+						"price": 1.18
+					},
+					"garlic fries": {
+						"price": 2.4
+					},
+					"sweet potato fries": {
+						"price": 1.4
+					}
+				}
+			},
+			"drink options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"apple juice": {
+						"price": 0
+					},
+					"arnold palmer": {
+						"price": 0
+					},
+					"banana shake": {
+						"price": 3.23
+					},
+					"barqs root beer": {
+						"price": 0
+					},
+					"bottled water": {
+						"price": 0
+					},
+					"caramel frappucino": {
+						"price": 2.91
+					},
+					"cherry coke": {
+						"price": 0
+					},
+					"chocolate milk": {
+						"price": 0
+					},
+					"chocolate shake": {
+						"price": 3.23
+					},
+					"coffee": {
+						"price": 0
+					},
+					"coke": {
+						"price": 0
+					},
+					"diet coke": {
+						"price": 0
+					},
+					"fanta": {
+						"price": 0
+					},
+					"frappucino": {
+						"price": 2.45
+					},
+					"iced coffee": {
+						"price": 0
+					},
+					"lemonade": {
+						"price": 0
+					},
+					"mango shake": {
+						"price": 4.12
+					},
+					"mango smoothie": {
+						"price": 3.32
+					},
+					"milk": {
+						"price": 0
+					},
+					"mocha frappucino": {
+						"price": 2.91
+					},
+					"mr pibb": {
+						"price": 0
+					},
+					"neopolitan shake": {
+						"price": 4.26
+					},
+					"powerade": {
+						"price": 0
+					},
+					"raspberry tea": {
+						"price": 0
+					},
+					"redbull": {
+						"price": 0.63
+					},
+					"rockstar": {
+						"price": 0.63
+					},
+					"rootbeer float": {
+						"price": 2.32
+					},
+					"rootbeer shake": {
+						"price": 3.23
+					},
+					"sprite": {
+						"price": 0
+					},
+					"strawberry shake": {
+						"price": 3.23
+					},
+					"strawberry smoothie": {
+						"price": 3.32
+					},
+					"unsweetened tea": {
+						"price": 0
+					},
+					"vanilla shake": {
+						"price": 3.23
+					}
+				}
+			},
+			"upgrade": {
+				"required": false,
+				"minimum": 0,
+				"maximum": 1,
+				"choices": {
+					"supersize meal": {
+						"price": 1
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Kraut Dog",
+		"itemType": "main - meal option",
+		"description": "Kraut dog with mustard.",
+		"options": {
+			"customizations": {
+				"required": true,
+				"minimum": 0,
+				"maximum": 14,
+				"choices": {
+					"american cheese": {
+						"price": 1.23
+					},
+					"cheddar cheese": {
+						"price": 1.23
+					},
+					"swiss cheese": {
+						"price": 1.23
+					},
+					"barbecue sauce": {
+						"price": 0
+					},
+					"brown mustard": {
+						"price": 0
+					},
+					"ketchup": {
+						"price": 0
+					},
+					"marinara sauce": {
+						"price": 0
+					},
+					"mayo": {
+						"price": 0
+					},
+					"mustard": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"ranch": {
+						"price": 0
+					},
+					"relish": {
+						"price": 0
+					},
+					"thousand island": {
+						"price": 0
+					},
+					"bacon": {
+						"price": 1.59
+					},
+					"bell peppers": {
+						"price": 0
+					},
+					"celery salt": {
+						"price": 0
+					},
+					"chili": {
+						"price": 1.23
+					},
+					"chili peppers": {
+						"price": 0
+					},
+					"grilled onions": {
+						"price": 0
+					},
+					"grilled bell peppers": {
+						"price": 0
+					},
+					"jalapeño": {
+						"price": 0.73
+					},
+					"lettuce": {
+						"price": 0
+					},
+					"mushrooms": {
+						"price": 1.23
+					},
+					"onions": {
+						"price": 0
+					},
+					"pickles": {
+						"price": 0.39
+					},
+					"pineapple": {
+						"price": 0
+					},
+					"sauerkraut": {
+						"price": 0.91
+					},
+					"tomatoes": {
+						"price": 0.39
+					},
+					"chipotle aioli": {
+						"price": 0
+					},
+					"citrus pineapple aioli": {
+						"price": 0
+					},
+					"garlic pesto aioli": {
+						"price": 0
+					}
+				},
+				"modifiers": [
+					"add",
+					"easy",
+					"extra",
+					"no"
+				]
+			},
+			"meal option": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"a la carte": {
+						"price": 7.46
+					},
+					"meal": {
+						"price": 13.46
+					}
+				}
+			},
+			"side options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "regular fries",
+				"choices": {
+					"regular fries": {
+						"price": 0
+					},
+					"chili fries": {
+						"price": 1.65
+					},
+					"chili cheese fries": {
+						"price": 2.64
+					},
+					"onion chips": {
+						"price": 0
+					},
+					"chriscut fries": {
+						"price": 1.18
+					},
+					"garlic fries": {
+						"price": 2.4
+					},
+					"sweet potato fries": {
+						"price": 1.4
+					}
+				}
+			},
+			"drink options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"apple juice": {
+						"price": 0
+					},
+					"arnold palmer": {
+						"price": 0
+					},
+					"banana shake": {
+						"price": 3.23
+					},
+					"barqs root beer": {
+						"price": 0
+					},
+					"bottled water": {
+						"price": 0
+					},
+					"caramel frappucino": {
+						"price": 2.91
+					},
+					"cherry coke": {
+						"price": 0
+					},
+					"chocolate milk": {
+						"price": 0
+					},
+					"chocolate shake": {
+						"price": 3.23
+					},
+					"coffee": {
+						"price": 0
+					},
+					"coke": {
+						"price": 0
+					},
+					"diet coke": {
+						"price": 0
+					},
+					"fanta": {
+						"price": 0
+					},
+					"frappucino": {
+						"price": 2.45
+					},
+					"iced coffee": {
+						"price": 0
+					},
+					"lemonade": {
+						"price": 0
+					},
+					"mango shake": {
+						"price": 4.12
+					},
+					"mango smoothie": {
+						"price": 3.32
+					},
+					"milk": {
+						"price": 0
+					},
+					"mocha frappucino": {
+						"price": 2.91
+					},
+					"mr pibb": {
+						"price": 0
+					},
+					"neopolitan shake": {
+						"price": 4.26
+					},
+					"powerade": {
+						"price": 0
+					},
+					"raspberry tea": {
+						"price": 0
+					},
+					"redbull": {
+						"price": 0.63
+					},
+					"rockstar": {
+						"price": 0.63
+					},
+					"rootbeer float": {
+						"price": 2.32
+					},
+					"rootbeer shake": {
+						"price": 3.23
+					},
+					"sprite": {
+						"price": 0
+					},
+					"strawberry shake": {
+						"price": 3.23
+					},
+					"strawberry smoothie": {
+						"price": 3.32
+					},
+					"unsweetened tea": {
+						"price": 0
+					},
+					"vanilla shake": {
+						"price": 3.23
+					}
+				}
+			},
+			"upgrade": {
+				"required": false,
+				"minimum": 0,
+				"maximum": 1,
+				"choices": {
+					"supersize meal": {
+						"price": 1
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Polish Sausage Dog",
+		"itemType": "main - meal option",
+		"description": "Polish sausage dog with mustard.",
+		"options": {
+			"customizations": {
+				"required": true,
+				"minimum": 0,
+				"maximum": 14,
+				"choices": {
+					"american cheese": {
+						"price": 1.23
+					},
+					"cheddar cheese": {
+						"price": 1.23
+					},
+					"swiss cheese": {
+						"price": 1.23
+					},
+					"barbecue sauce": {
+						"price": 0
+					},
+					"brown mustard": {
+						"price": 0
+					},
+					"ketchup": {
+						"price": 0
+					},
+					"marinara sauce": {
+						"price": 0
+					},
+					"mayo": {
+						"price": 0
+					},
+					"mustard": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"ranch": {
+						"price": 0
+					},
+					"relish": {
+						"price": 0
+					},
+					"thousand island": {
+						"price": 0
+					},
+					"bacon": {
+						"price": 1.59
+					},
+					"bell peppers": {
+						"price": 0
+					},
+					"celery salt": {
+						"price": 0
+					},
+					"chili": {
+						"price": 1.23
+					},
+					"chili peppers": {
+						"price": 0
+					},
+					"grilled onions": {
+						"price": 0
+					},
+					"grilled bell peppers": {
+						"price": 0
+					},
+					"jalapeño": {
+						"price": 0.73
+					},
+					"lettuce": {
+						"price": 0
+					},
+					"mushrooms": {
+						"price": 1.23
+					},
+					"onions": {
+						"price": 0
+					},
+					"pickles": {
+						"price": 0.39
+					},
+					"pineapple": {
+						"price": 0
+					},
+					"sauerkraut": {
+						"price": 0.91
+					},
+					"tomatoes": {
+						"price": 0.39
+					},
+					"chipotle aioli": {
+						"price": 0
+					},
+					"citrus pineapple aioli": {
+						"price": 0
+					},
+					"garlic pesto aioli": {
+						"price": 0
+					}
+				},
+				"modifiers": [
+					"add",
+					"easy",
+					"extra",
+					"no"
+				]
+			},
+			"meal option": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"a la carte": {
+						"price": 8.1
+					},
+					"meal": {
+						"price": 14.1
+					}
+				}
+			},
+			"side options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "regular fries",
+				"choices": {
+					"regular fries": {
+						"price": 0
+					},
+					"chili fries": {
+						"price": 1.65
+					},
+					"chili cheese fries": {
+						"price": 2.64
+					},
+					"onion chips": {
+						"price": 0
+					},
+					"chriscut fries": {
+						"price": 1.18
+					},
+					"garlic fries": {
+						"price": 2.4
+					},
+					"sweet potato fries": {
+						"price": 1.4
+					}
+				}
+			},
+			"drink options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"apple juice": {
+						"price": 0
+					},
+					"arnold palmer": {
+						"price": 0
+					},
+					"banana shake": {
+						"price": 3.23
+					},
+					"barqs root beer": {
+						"price": 0
+					},
+					"bottled water": {
+						"price": 0
+					},
+					"caramel frappucino": {
+						"price": 2.91
+					},
+					"cherry coke": {
+						"price": 0
+					},
+					"chocolate milk": {
+						"price": 0
+					},
+					"chocolate shake": {
+						"price": 3.23
+					},
+					"coffee": {
+						"price": 0
+					},
+					"coke": {
+						"price": 0
+					},
+					"diet coke": {
+						"price": 0
+					},
+					"fanta": {
+						"price": 0
+					},
+					"frappucino": {
+						"price": 2.45
+					},
+					"iced coffee": {
+						"price": 0
+					},
+					"lemonade": {
+						"price": 0
+					},
+					"mango shake": {
+						"price": 4.12
+					},
+					"mango smoothie": {
+						"price": 3.32
+					},
+					"milk": {
+						"price": 0
+					},
+					"mocha frappucino": {
+						"price": 2.91
+					},
+					"mr pibb": {
+						"price": 0
+					},
+					"neopolitan shake": {
+						"price": 4.26
+					},
+					"powerade": {
+						"price": 0
+					},
+					"raspberry tea": {
+						"price": 0
+					},
+					"redbull": {
+						"price": 0.63
+					},
+					"rockstar": {
+						"price": 0.63
+					},
+					"rootbeer float": {
+						"price": 2.32
+					},
+					"rootbeer shake": {
+						"price": 3.23
+					},
+					"sprite": {
+						"price": 0
+					},
+					"strawberry shake": {
+						"price": 3.23
+					},
+					"strawberry smoothie": {
+						"price": 3.32
+					},
+					"unsweetened tea": {
+						"price": 0
+					},
+					"vanilla shake": {
+						"price": 3.23
+					}
+				}
+			},
+			"upgrade": {
+				"required": false,
+				"minimum": 0,
+				"maximum": 1,
+				"choices": {
+					"supersize meal": {
+						"price": 1
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Louisiana Hot Link Dog",
+		"itemType": "main - meal option",
+		"description": "Louisiana hot link dog with mustard.",
+		"options": {
+			"customizations": {
+				"required": true,
+				"minimum": 0,
+				"maximum": 14,
+				"choices": {
+					"american cheese": {
+						"price": 1.23
+					},
+					"cheddar cheese": {
+						"price": 1.23
+					},
+					"swiss cheese": {
+						"price": 1.23
+					},
+					"barbecue sauce": {
+						"price": 0
+					},
+					"brown mustard": {
+						"price": 0
+					},
+					"ketchup": {
+						"price": 0
+					},
+					"marinara sauce": {
+						"price": 0
+					},
+					"mayo": {
+						"price": 0
+					},
+					"mustard": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"ranch": {
+						"price": 0
+					},
+					"relish": {
+						"price": 0
+					},
+					"thousand island": {
+						"price": 0
+					},
+					"bacon": {
+						"price": 1.59
+					},
+					"bell peppers": {
+						"price": 0
+					},
+					"celery salt": {
+						"price": 0
+					},
+					"chili": {
+						"price": 1.23
+					},
+					"chili peppers": {
+						"price": 0
+					},
+					"grilled onions": {
+						"price": 0
+					},
+					"grilled bell peppers": {
+						"price": 0
+					},
+					"jalapeño": {
+						"price": 0.73
+					},
+					"lettuce": {
+						"price": 0
+					},
+					"mushrooms": {
+						"price": 1.23
+					},
+					"onions": {
+						"price": 0
+					},
+					"pickles": {
+						"price": 0.39
+					},
+					"pineapple": {
+						"price": 0
+					},
+					"sauerkraut": {
+						"price": 0.91
+					},
+					"tomatoes": {
+						"price": 0.39
+					},
+					"chipotle aioli": {
+						"price": 0
+					},
+					"citrus pineapple aioli": {
+						"price": 0
+					},
+					"garlic pesto aioli": {
+						"price": 0
+					}
+				},
+				"modifiers": [
+					"add",
+					"easy",
+					"extra",
+					"no"
+				]
+			},
+			"meal option": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"a la carte": {
+						"price": 8.1
+					},
+					"meal": {
+						"price": 14.1
+					}
+				}
+			},
+			"side options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "regular fries",
+				"choices": {
+					"regular fries": {
+						"price": 0
+					},
+					"chili fries": {
+						"price": 1.65
+					},
+					"chili cheese fries": {
+						"price": 2.64
+					},
+					"onion chips": {
+						"price": 0
+					},
+					"chriscut fries": {
+						"price": 1.18
+					},
+					"garlic fries": {
+						"price": 2.4
+					},
+					"sweet potato fries": {
+						"price": 1.4
+					}
+				}
+			},
+			"drink options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"apple juice": {
+						"price": 0
+					},
+					"arnold palmer": {
+						"price": 0
+					},
+					"banana shake": {
+						"price": 3.23
+					},
+					"barqs root beer": {
+						"price": 0
+					},
+					"bottled water": {
+						"price": 0
+					},
+					"caramel frappucino": {
+						"price": 2.91
+					},
+					"cherry coke": {
+						"price": 0
+					},
+					"chocolate milk": {
+						"price": 0
+					},
+					"chocolate shake": {
+						"price": 3.23
+					},
+					"coffee": {
+						"price": 0
+					},
+					"coke": {
+						"price": 0
+					},
+					"diet coke": {
+						"price": 0
+					},
+					"fanta": {
+						"price": 0
+					},
+					"frappucino": {
+						"price": 2.45
+					},
+					"iced coffee": {
+						"price": 0
+					},
+					"lemonade": {
+						"price": 0
+					},
+					"mango shake": {
+						"price": 4.12
+					},
+					"mango smoothie": {
+						"price": 3.32
+					},
+					"milk": {
+						"price": 0
+					},
+					"mocha frappucino": {
+						"price": 2.91
+					},
+					"mr pibb": {
+						"price": 0
+					},
+					"neopolitan shake": {
+						"price": 4.26
+					},
+					"powerade": {
+						"price": 0
+					},
+					"raspberry tea": {
+						"price": 0
+					},
+					"redbull": {
+						"price": 0.63
+					},
+					"rockstar": {
+						"price": 0.63
+					},
+					"rootbeer float": {
+						"price": 2.32
+					},
+					"rootbeer shake": {
+						"price": 3.23
+					},
+					"sprite": {
+						"price": 0
+					},
+					"strawberry shake": {
+						"price": 3.23
+					},
+					"strawberry smoothie": {
+						"price": 3.32
+					},
+					"unsweetened tea": {
+						"price": 0
+					},
+					"vanilla shake": {
+						"price": 3.23
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "6in Jr. All American Dog",
+		"itemType": "main - meal option",
+		"description": "6in jr. all american dog with mustard, relish, onions, and ketchup.",
+		"options": {
+			"customizations": {
+				"required": true,
+				"minimum": 0,
+				"maximum": 14,
+				"choices": {
+					"american cheese": {
+						"price": 1.23
+					},
+					"cheddar cheese": {
+						"price": 1.23
+					},
+					"swiss cheese": {
+						"price": 1.23
+					},
+					"barbecue sauce": {
+						"price": 0
+					},
+					"brown mustard": {
+						"price": 0
+					},
+					"ketchup": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"marinara sauce": {
+						"price": 0
+					},
+					"mayo": {
+						"price": 0
+					},
+					"mustard": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"ranch": {
+						"price": 0
+					},
+					"relish": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"thousand island": {
+						"price": 0
+					},
+					"bacon": {
+						"price": 1.59
+					},
+					"bell peppers": {
+						"price": 0
+					},
+					"celery salt": {
+						"price": 0
+					},
+					"chili": {
+						"price": 1.23
+					},
+					"chili peppers": {
+						"price": 0
+					},
+					"grilled onions": {
+						"price": 0
+					},
+					"grilled bell peppers": {
+						"price": 0
+					},
+					"jalapeño": {
+						"price": 0.73
+					},
+					"lettuce": {
+						"price": 0
+					},
+					"mushrooms": {
+						"price": 1.23
+					},
+					"onions": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"pickles": {
+						"price": 0.39
+					},
+					"pineapple": {
+						"price": 0
+					},
+					"sauerkraut": {
+						"price": 0.91
+					},
+					"tomatoes": {
+						"price": 0.39
+					},
+					"chipotle aioli": {
+						"price": 0
+					},
+					"citrus pineapple aioli": {
+						"price": 0
+					},
+					"garlic pesto aioli": {
+						"price": 0
+					}
+				},
+				"modifiers": [
+					"add",
+					"easy",
+					"extra",
+					"no"
+				]
+			},
+			"meal option": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"a la carte": {
+						"price": 5
+					},
+					"meal": {
+						"price": 11
+					}
+				}
+			},
+			"side options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "regular fries",
+				"choices": {
+					"regular fries": {
+						"price": 0
+					},
+					"chili fries": {
+						"price": 1.65
+					},
+					"chili cheese fries": {
+						"price": 2.64
+					},
+					"onion chips": {
+						"price": 0
+					},
+					"chriscut fries": {
+						"price": 1.18
+					},
+					"garlic fries": {
+						"price": 2.4
+					},
+					"sweet potato fries": {
+						"price": 1.4
+					}
+				}
+			},
+			"drink options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"apple juice": {
+						"price": 0
+					},
+					"arnold palmer": {
+						"price": 0
+					},
+					"banana shake": {
+						"price": 3.23
+					},
+					"barqs root beer": {
+						"price": 0
+					},
+					"bottled water": {
+						"price": 0
+					},
+					"caramel frappucino": {
+						"price": 2.91
+					},
+					"cherry coke": {
+						"price": 0
+					},
+					"chocolate milk": {
+						"price": 0
+					},
+					"chocolate shake": {
+						"price": 3.23
+					},
+					"coffee": {
+						"price": 0
+					},
+					"coke": {
+						"price": 0
+					},
+					"diet coke": {
+						"price": 0
+					},
+					"fanta": {
+						"price": 0
+					},
+					"frappucino": {
+						"price": 2.45
+					},
+					"iced coffee": {
+						"price": 0
+					},
+					"lemonade": {
+						"price": 0
+					},
+					"mango shake": {
+						"price": 4.12
+					},
+					"mango smoothie": {
+						"price": 3.32
+					},
+					"milk": {
+						"price": 0
+					},
+					"mocha frappucino": {
+						"price": 2.91
+					},
+					"mr pibb": {
+						"price": 0
+					},
+					"neopolitan shake": {
+						"price": 4.26
+					},
+					"powerade": {
+						"price": 0
+					},
+					"raspberry tea": {
+						"price": 0
+					},
+					"redbull": {
+						"price": 0.63
+					},
+					"rockstar": {
+						"price": 0.63
+					},
+					"rootbeer float": {
+						"price": 2.32
+					},
+					"rootbeer shake": {
+						"price": 3.23
+					},
+					"sprite": {
+						"price": 0
+					},
+					"strawberry shake": {
+						"price": 3.23
+					},
+					"strawberry smoothie": {
+						"price": 3.32
+					},
+					"unsweetened tea": {
+						"price": 0
+					},
+					"vanilla shake": {
+						"price": 3.23
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Corn Dog",
+		"itemType": "main - meal option",
+		"description": "",
+		"options": {
+			"customizations": {
+				"required": true,
+				"minimum": 0,
+				"maximum": 14,
+				"choices": {
+					"american cheese": {
+						"price": 1.23
+					},
+					"cheddar cheese": {
+						"price": 1.23
+					},
+					"swiss cheese": {
+						"price": 1.23
+					},
+					"barbecue sauce": {
+						"price": 0
+					},
+					"brown mustard": {
+						"price": 0
+					},
+					"ketchup": {
+						"price": 0
+					},
+					"marinara sauce": {
+						"price": 0
+					},
+					"mayo": {
+						"price": 0
+					},
+					"mustard": {
+						"price": 0
+					},
+					"ranch": {
+						"price": 0
+					},
+					"relish": {
+						"price": 0
+					},
+					"thousand island": {
+						"price": 0
+					},
+					"bacon": {
+						"price": 1.59
+					},
+					"bell peppers": {
+						"price": 0
+					},
+					"celery salt": {
+						"price": 0
+					},
+					"chili": {
+						"price": 1.23
+					},
+					"chili peppers": {
+						"price": 0
+					},
+					"grilled onions": {
+						"price": 0
+					},
+					"grilled bell peppers": {
+						"price": 0
+					},
+					"jalapeño": {
+						"price": 0.73
+					},
+					"lettuce": {
+						"price": 0
+					},
+					"mushrooms": {
+						"price": 1.23
+					},
+					"onions": {
+						"price": 0
+					},
+					"pickles": {
+						"price": 0.39
+					},
+					"pineapple": {
+						"price": 0
+					},
+					"sauerkraut": {
+						"price": 0.91
+					},
+					"tomatoes": {
+						"price": 0.39
+					},
+					"chipotle aioli": {
+						"price": 0
+					},
+					"citrus pineapple aioli": {
+						"price": 0
+					},
+					"garlic pesto aioli": {
+						"price": 0
+					}
+				},
+				"modifiers": [
+					"add",
+					"easy",
+					"extra",
+					"no"
+				]
+			},
+			"meal option": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"a la carte": {
+						"price": 5.23
+					},
+					"meal": {
+						"price": 11.23
+					}
+				}
+			},
+			"side options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "regular fries",
+				"choices": {
+					"regular fries": {
+						"price": 0
+					},
+					"chili fries": {
+						"price": 1.65
+					},
+					"chili cheese fries": {
+						"price": 2.64
+					},
+					"onion chips": {
+						"price": 0
+					},
+					"chriscut fries": {
+						"price": 1.18
+					},
+					"garlic fries": {
+						"price": 2.4
+					},
+					"sweet potato fries": {
+						"price": 1.4
+					}
+				}
+			},
+			"drink options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"apple juice": {
+						"price": 0
+					},
+					"arnold palmer": {
+						"price": 0
+					},
+					"banana shake": {
+						"price": 3.23
+					},
+					"barqs root beer": {
+						"price": 0
+					},
+					"bottled water": {
+						"price": 0
+					},
+					"caramel frappucino": {
+						"price": 2.91
+					},
+					"cherry coke": {
+						"price": 0
+					},
+					"chocolate milk": {
+						"price": 0
+					},
+					"chocolate shake": {
+						"price": 3.23
+					},
+					"coffee": {
+						"price": 0
+					},
+					"coke": {
+						"price": 0
+					},
+					"diet coke": {
+						"price": 0
+					},
+					"fanta": {
+						"price": 0
+					},
+					"frappucino": {
+						"price": 2.45
+					},
+					"iced coffee": {
+						"price": 0
+					},
+					"lemonade": {
+						"price": 0
+					},
+					"mango shake": {
+						"price": 4.12
+					},
+					"mango smoothie": {
+						"price": 3.32
+					},
+					"milk": {
+						"price": 0
+					},
+					"mocha frappucino": {
+						"price": 2.91
+					},
+					"mr pibb": {
+						"price": 0
+					},
+					"neopolitan shake": {
+						"price": 4.26
+					},
+					"powerade": {
+						"price": 0
+					},
+					"raspberry tea": {
+						"price": 0
+					},
+					"redbull": {
+						"price": 0.63
+					},
+					"rockstar": {
+						"price": 0.63
+					},
+					"rootbeer float": {
+						"price": 2.32
+					},
+					"rootbeer shake": {
+						"price": 3.23
+					},
+					"sprite": {
+						"price": 0
+					},
+					"strawberry shake": {
+						"price": 3.23
+					},
+					"strawberry smoothie": {
+						"price": 3.32
+					},
+					"unsweetened tea": {
+						"price": 0
+					},
+					"vanilla shake": {
+						"price": 3.23
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Junior Dog",
+		"itemType": "main - meal option",
+		"description": "Junior Dog with mustard, relish, onions, and ketchup.",
+		"price": 9.1,
+		"options": {
+			"customizations": {
+				"required": true,
+				"minimum": 0,
+				"maximum": 14,
+				"choices": {
+					"american cheese": {
+						"price": 1.23
+					},
+					"cheddar cheese": {
+						"price": 1.23
+					},
+					"swiss cheese": {
+						"price": 1.23
+					},
+					"barbecue sauce": {
+						"price": 0
+					},
+					"brown mustard": {
+						"price": 0
+					},
+					"ketchup": {
+						"price": 0
+					},
+					"marinara sauce": {
+						"price": 0
+					},
+					"mayo": {
+						"price": 0
+					},
+					"mustard": {
+						"price": 0
+					},
+					"ranch": {
+						"price": 0
+					},
+					"relish": {
+						"price": 0
+					},
+					"thousand island": {
+						"price": 0
+					},
+					"bacon": {
+						"price": 1.59
+					},
+					"bell peppers": {
+						"price": 0
+					},
+					"celery salt": {
+						"price": 0
+					},
+					"chili": {
+						"price": 1.23
+					},
+					"chili peppers": {
+						"price": 0
+					},
+					"grilled onions": {
+						"price": 0
+					},
+					"grilled bell peppers": {
+						"price": 0
+					},
+					"jalapeño": {
+						"price": 0.73
+					},
+					"lettuce": {
+						"price": 0
+					},
+					"mushrooms": {
+						"price": 1.23
+					},
+					"onions": {
+						"price": 0
+					},
+					"pickles": {
+						"price": 0.39
+					},
+					"pineapple": {
+						"price": 0
+					},
+					"sauerkraut": {
+						"price": 0.91
+					},
+					"tomatoes": {
+						"price": 0.39
+					},
+					"chipotle aioli": {
+						"price": 0
+					},
+					"citrus pineapple aioli": {
+						"price": 0
+					},
+					"garlic pesto aioli": {
+						"price": 0
+					}
+				},
+				"modifiers": [
+					"add",
+					"easy",
+					"extra",
+					"no"
+				]
+			},
+			"side options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "regular fries",
+				"choices": {
+					"regular fries": {
+						"price": 0
+					},
+					"chili fries": {
+						"price": 1.65
+					},
+					"chili cheese fries": {
+						"price": 2.64
+					},
+					"onion chips": {
+						"price": 0
+					},
+					"chriscut fries": {
+						"price": 1.18
+					},
+					"garlic fries": {
+						"price": 2.4
+					},
+					"sweet potato fries": {
+						"price": 1.4
+					}
+				}
+			},
+			"drink options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"apple juice": {
+						"price": 0
+					},
+					"arnold palmer": {
+						"price": 0
+					},
+					"banana shake": {
+						"price": 3.23
+					},
+					"barqs root beer": {
+						"price": 0
+					},
+					"bottled water": {
+						"price": 0
+					},
+					"caramel frappucino": {
+						"price": 2.91
+					},
+					"cherry coke": {
+						"price": 0
+					},
+					"chocolate milk": {
+						"price": 0
+					},
+					"chocolate shake": {
+						"price": 3.23
+					},
+					"coffee": {
+						"price": 0
+					},
+					"coke": {
+						"price": 0
+					},
+					"diet coke": {
+						"price": 0
+					},
+					"fanta": {
+						"price": 0
+					},
+					"frappucino": {
+						"price": 2.45
+					},
+					"iced coffee": {
+						"price": 0
+					},
+					"lemonade": {
+						"price": 0
+					},
+					"mango shake": {
+						"price": 4.12
+					},
+					"mango smoothie": {
+						"price": 3.32
+					},
+					"milk": {
+						"price": 0
+					},
+					"mocha frappucino": {
+						"price": 2.91
+					},
+					"mr pibb": {
+						"price": 0
+					},
+					"neopolitan shake": {
+						"price": 4.26
+					},
+					"powerade": {
+						"price": 0
+					},
+					"raspberry tea": {
+						"price": 0
+					},
+					"redbull": {
+						"price": 0.63
+					},
+					"rockstar": {
+						"price": 0.63
+					},
+					"rootbeer float": {
+						"price": 2.32
+					},
+					"rootbeer shake": {
+						"price": 3.23
+					},
+					"sprite": {
+						"price": 0
+					},
+					"strawberry shake": {
+						"price": 3.23
+					},
+					"strawberry smoothie": {
+						"price": 3.32
+					},
+					"unsweetened tea": {
+						"price": 0
+					},
+					"vanilla shake": {
+						"price": 3.23
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Hamburger",
+		"itemType": "main - meal option",
+		"description": "Hamburger with mayo, mustard, tomato, lettuce, and onion.",
+		"options": {
+			"meal option": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"a la carte": {
+						"price": 7.83
+					},
+					"meal": {
+						"price": 13.29
+					}
+				}
+			},
+			"customizations": {
+				"required": false,
+				"minimum": 0,
+				"maximum": 14,
+				"choices": {
+					"american cheese": {
+						"price": 1.23
+					},
+					"cheddar cheese": {
+						"price": 1.23
+					},
+					"swiss cheese": {
+						"price": 1.23
+					},
+					"barbecue sauce": {
+						"price": 0
+					},
+					"brown mustard": {
+						"price": 0
+					},
+					"ketchup": {
+						"price": 0
+					},
+					"marinara sauce": {
+						"price": 0
+					},
+					"mayo": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"mustard": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"ranch": {
+						"price": 0
+					},
+					"relish": {
+						"price": 0
+					},
+					"thousand island": {
+						"price": 0
+					},
+					"bacon": {
+						"price": 1.59
+					},
+					"bell peppers": {
+						"price": 0
+					},
+					"celery salt": {
+						"price": 0
+					},
+					"chili": {
+						"price": 1.23
+					},
+					"chili peppers": {
+						"price": 0
+					},
+					"grilled onions": {
+						"price": 0
+					},
+					"grilled bell peppers": {
+						"price": 0
+					},
+					"jalapeño": {
+						"price": 0.73
+					},
+					"lettuce": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"mushrooms": {
+						"price": 1.23
+					},
+					"onions": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"pickles": {
+						"price": 0.39
+					},
+					"pineapple": {
+						"price": 0
+					},
+					"sauerkraut": {
+						"price": 0.91
+					},
+					"tomatoes": {
+						"price": 0.39,
+						"isBaseIngredient": true
+					},
+					"chipotle aioli": {
+						"price": 0
+					},
+					"citrus pineapple aioli": {
+						"price": 0
+					},
+					"garlic pesto aioli": {
+						"price": 0
+					}
+				},
+				"modifiers": [
+					"add",
+					"easy",
+					"extra",
+					"no"
+				]
+			},
+			"side options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "regular fries",
+				"choices": {
+					"regular fries": {
+						"price": 0
+					},
+					"chili fries": {
+						"price": 1.65
+					},
+					"chili cheese fries": {
+						"price": 2.64
+					},
+					"onion chips": {
+						"price": 0
+					},
+					"chriscut fries": {
+						"price": 1.18
+					},
+					"garlic fries": {
+						"price": 2.4
+					},
+					"sweet potato fries": {
+						"price": 1.4
+					}
+				}
+			},
+			"drink options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"apple juice": {
+						"price": 0
+					},
+					"arnold palmer": {
+						"price": 0
+					},
+					"banana shake": {
+						"price": 3.23
+					},
+					"barqs root beer": {
+						"price": 0
+					},
+					"bottled water": {
+						"price": 0
+					},
+					"caramel frappucino": {
+						"price": 2.91
+					},
+					"cherry coke": {
+						"price": 0
+					},
+					"chocolate milk": {
+						"price": 0
+					},
+					"chocolate shake": {
+						"price": 3.23
+					},
+					"coffee": {
+						"price": 0
+					},
+					"coke": {
+						"price": 0
+					},
+					"diet coke": {
+						"price": 0
+					},
+					"fanta": {
+						"price": 0
+					},
+					"frappucino": {
+						"price": 2.45
+					},
+					"iced coffee": {
+						"price": 0
+					},
+					"lemonade": {
+						"price": 0
+					},
+					"mango shake": {
+						"price": 4.12
+					},
+					"mango smoothie": {
+						"price": 3.32
+					},
+					"milk": {
+						"price": 0
+					},
+					"mocha frappucino": {
+						"price": 2.91
+					},
+					"mr pibb": {
+						"price": 0
+					},
+					"neopolitan shake": {
+						"price": 4.26
+					},
+					"powerade": {
+						"price": 0
+					},
+					"raspberry tea": {
+						"price": 0
+					},
+					"redbull": {
+						"price": 0.63
+					},
+					"rockstar": {
+						"price": 0.63
+					},
+					"rootbeer float": {
+						"price": 2.32
+					},
+					"rootbeer shake": {
+						"price": 3.23
+					},
+					"sprite": {
+						"price": 0
+					},
+					"strawberry shake": {
+						"price": 3.23
+					},
+					"strawberry smoothie": {
+						"price": 3.32
+					},
+					"unsweetened tea": {
+						"price": 0
+					},
+					"vanilla shake": {
+						"price": 3.23
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Bacon Cheese Burger",
+		"itemType": "main - meal option",
+		"description": "Bacon cheese burger with mayo, mustard, tomato, lettuce, and onion. It comes with american cheese unless otherwise specified.",
+		"options": {
+			"customizations": {
+				"required": true,
+				"minimum": 0,
+				"maximum": 14,
+				"choices": {
+					"american cheese": {
+						"price": 1.23
+					},
+					"cheddar cheese": {
+						"price": 1.23
+					},
+					"swiss cheese": {
+						"price": 1.23
+					},
+					"barbecue sauce": {
+						"price": 0
+					},
+					"brown mustard": {
+						"price": 0
+					},
+					"ketchup": {
+						"price": 0
+					},
+					"marinara sauce": {
+						"price": 0
+					},
+					"mayo": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"mustard": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"ranch": {
+						"price": 0
+					},
+					"relish": {
+						"price": 0
+					},
+					"thousand island": {
+						"price": 0
+					},
+					"bacon": {
+						"price": 1.59
+					},
+					"bell peppers": {
+						"price": 0
+					},
+					"celery salt": {
+						"price": 0
+					},
+					"chili": {
+						"price": 1.23
+					},
+					"chili peppers": {
+						"price": 0
+					},
+					"grilled onions": {
+						"price": 0
+					},
+					"grilled bell peppers": {
+						"price": 0
+					},
+					"jalapeño": {
+						"price": 0.73
+					},
+					"lettuce": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"mushrooms": {
+						"price": 1.23
+					},
+					"onions": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"pickles": {
+						"price": 0.39
+					},
+					"pineapple": {
+						"price": 0
+					},
+					"sauerkraut": {
+						"price": 0.91
+					},
+					"tomatoes": {
+						"price": 0.39,
+						"isBaseIngredient": true
+					},
+					"chipotle aioli": {
+						"price": 0
+					},
+					"citrus pineapple aioli": {
+						"price": 0
+					},
+					"garlic pesto aioli": {
+						"price": 0
+					}
+				},
+				"modifiers": [
+					"add",
+					"easy",
+					"extra",
+					"no"
+				]
+			},
+			"meal option": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"a la carte": {
+						"price": 10.88
+					},
+					"meal": {
+						"price": 16.88
+					}
+				}
+			},
+			"side options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "regular fries",
+				"choices": {
+					"regular fries": {
+						"price": 0
+					},
+					"chili fries": {
+						"price": 1.65
+					},
+					"chili cheese fries": {
+						"price": 2.64
+					},
+					"onion chips": {
+						"price": 0
+					},
+					"chriscut fries": {
+						"price": 1.18
+					},
+					"garlic fries": {
+						"price": 2.4
+					},
+					"sweet potato fries": {
+						"price": 1.4
+					}
+				}
+			},
+			"drink options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"apple juice": {
+						"price": 0
+					},
+					"arnold palmer": {
+						"price": 0
+					},
+					"banana shake": {
+						"price": 3.23
+					},
+					"barqs root beer": {
+						"price": 0
+					},
+					"bottled water": {
+						"price": 0
+					},
+					"caramel frappucino": {
+						"price": 2.91
+					},
+					"cherry coke": {
+						"price": 0
+					},
+					"chocolate milk": {
+						"price": 0
+					},
+					"chocolate shake": {
+						"price": 3.23
+					},
+					"coffee": {
+						"price": 0
+					},
+					"coke": {
+						"price": 0
+					},
+					"diet coke": {
+						"price": 0
+					},
+					"fanta": {
+						"price": 0
+					},
+					"frappucino": {
+						"price": 2.45
+					},
+					"iced coffee": {
+						"price": 0
+					},
+					"lemonade": {
+						"price": 0
+					},
+					"mango shake": {
+						"price": 4.12
+					},
+					"mango smoothie": {
+						"price": 3.32
+					},
+					"milk": {
+						"price": 0
+					},
+					"mocha frappucino": {
+						"price": 2.91
+					},
+					"mr pibb": {
+						"price": 0
+					},
+					"neopolitan shake": {
+						"price": 4.26
+					},
+					"powerade": {
+						"price": 0
+					},
+					"raspberry tea": {
+						"price": 0
+					},
+					"redbull": {
+						"price": 0.63
+					},
+					"rockstar": {
+						"price": 0.63
+					},
+					"rootbeer float": {
+						"price": 2.32
+					},
+					"rootbeer shake": {
+						"price": 3.23
+					},
+					"sprite": {
+						"price": 0
+					},
+					"strawberry shake": {
+						"price": 3.23
+					},
+					"strawberry smoothie": {
+						"price": 3.32
+					},
+					"unsweetened tea": {
+						"price": 0
+					},
+					"vanilla shake": {
+						"price": 3.23
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Cheese Burger",
+		"itemType": "main - meal option",
+		"description": "Cheese burger with american cheese, mayo, mustard, onions, lettuce, tomato.",
+		"options": {
+			"customizations": {
+				"required": true,
+				"minimum": 0,
+				"maximum": 14,
+				"choices": {
+					"american cheese": {
+						"price": 1.23,
+						"isBaseIngredient": true
+					},
+					"cheddar cheese": {
+						"price": 1.23
+					},
+					"swiss cheese": {
+						"price": 1.23
+					},
+					"barbecue sauce": {
+						"price": 0
+					},
+					"brown mustard": {
+						"price": 0
+					},
+					"ketchup": {
+						"price": 0
+					},
+					"marinara sauce": {
+						"price": 0
+					},
+					"mayo": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"mustard": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"ranch": {
+						"price": 0
+					},
+					"relish": {
+						"price": 0
+					},
+					"thousand island": {
+						"price": 0
+					},
+					"bacon": {
+						"price": 1.59
+					},
+					"bell peppers": {
+						"price": 0
+					},
+					"celery salt": {
+						"price": 0
+					},
+					"chili": {
+						"price": 1.23
+					},
+					"chili peppers": {
+						"price": 0
+					},
+					"grilled onions": {
+						"price": 0
+					},
+					"grilled bell peppers": {
+						"price": 0
+					},
+					"jalapeño": {
+						"price": 0.73
+					},
+					"lettuce": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"mushrooms": {
+						"price": 1.23
+					},
+					"onions": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"pickles": {
+						"price": 0.39
+					},
+					"pineapple": {
+						"price": 0
+					},
+					"sauerkraut": {
+						"price": 0.91
+					},
+					"tomatoes": {
+						"price": 0.39,
+						"isBaseIngredient": true
+					},
+					"chipotle aioli": {
+						"price": 0
+					},
+					"citrus pineapple aioli": {
+						"price": 0
+					},
+					"garlic pesto aioli": {
+						"price": 0
+					}
+				},
+				"modifiers": [
+					"add",
+					"easy",
+					"extra",
+					"no"
+				]
+			},
+			"meal option": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"a la carte": {
+						"price": 9.88
+					},
+					"meal": {
+						"price": 15.88
+					}
+				}
+			},
+			"side options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "regular fries",
+				"choices": {
+					"regular fries": {
+						"price": 0
+					},
+					"chili fries": {
+						"price": 1.65
+					},
+					"chili cheese fries": {
+						"price": 2.64
+					},
+					"onion chips": {
+						"price": 0
+					},
+					"chriscut fries": {
+						"price": 1.18
+					},
+					"garlic fries": {
+						"price": 2.4
+					},
+					"sweet potato fries": {
+						"price": 1.4
+					}
+				}
+			},
+			"drink options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"apple juice": {
+						"price": 0
+					},
+					"arnold palmer": {
+						"price": 0
+					},
+					"banana shake": {
+						"price": 3.23
+					},
+					"barqs root beer": {
+						"price": 0
+					},
+					"bottled water": {
+						"price": 0
+					},
+					"caramel frappucino": {
+						"price": 2.91
+					},
+					"cherry coke": {
+						"price": 0
+					},
+					"chocolate milk": {
+						"price": 0
+					},
+					"chocolate shake": {
+						"price": 3.23
+					},
+					"coffee": {
+						"price": 0
+					},
+					"coke": {
+						"price": 0
+					},
+					"diet coke": {
+						"price": 0
+					},
+					"fanta": {
+						"price": 0
+					},
+					"frappucino": {
+						"price": 2.45
+					},
+					"iced coffee": {
+						"price": 0
+					},
+					"lemonade": {
+						"price": 0
+					},
+					"mango shake": {
+						"price": 4.12
+					},
+					"mango smoothie": {
+						"price": 3.32
+					},
+					"milk": {
+						"price": 0
+					},
+					"mocha frappucino": {
+						"price": 2.91
+					},
+					"mr pibb": {
+						"price": 0
+					},
+					"neopolitan shake": {
+						"price": 4.26
+					},
+					"powerade": {
+						"price": 0
+					},
+					"raspberry tea": {
+						"price": 0
+					},
+					"redbull": {
+						"price": 0.63
+					},
+					"rockstar": {
+						"price": 0.63
+					},
+					"rootbeer float": {
+						"price": 2.32
+					},
+					"rootbeer shake": {
+						"price": 3.23
+					},
+					"sprite": {
+						"price": 0
+					},
+					"strawberry shake": {
+						"price": 3.23
+					},
+					"strawberry smoothie": {
+						"price": 3.32
+					},
+					"unsweetened tea": {
+						"price": 0
+					},
+					"vanilla shake": {
+						"price": 3.23
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Swiss Mushroom Burger",
+		"itemType": "main - meal option",
+		"description": "Swiss mushroom burger with mayo, mustard, swiss cheese, and mushroom.",
+		"options": {
+			"customizations": {
+				"required": true,
+				"minimum": 0,
+				"maximum": 14,
+				"choices": {
+					"american cheese": {
+						"price": 1.23
+					},
+					"cheddar cheese": {
+						"price": 1.23
+					},
+					"swiss cheese": {
+						"price": 1.23,
+						"isBaseIngredient": true
+					},
+					"barbecue sauce": {
+						"price": 0
+					},
+					"brown mustard": {
+						"price": 0
+					},
+					"ketchup": {
+						"price": 0
+					},
+					"marinara sauce": {
+						"price": 0
+					},
+					"mayo": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"mustard": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"ranch": {
+						"price": 0
+					},
+					"relish": {
+						"price": 0
+					},
+					"thousand island": {
+						"price": 0
+					},
+					"bacon": {
+						"price": 1.59
+					},
+					"bell peppers": {
+						"price": 0
+					},
+					"celery salt": {
+						"price": 0
+					},
+					"chili": {
+						"price": 1.23
+					},
+					"chili peppers": {
+						"price": 0
+					},
+					"grilled onions": {
+						"price": 0
+					},
+					"grilled bell peppers": {
+						"price": 0
+					},
+					"jalapeño": {
+						"price": 0.73
+					},
+					"lettuce": {
+						"price": 0
+					},
+					"mushrooms": {
+						"price": 1.23,
+						"isBaseIngredient": true
+					},
+					"onions": {
+						"price": 0
+					},
+					"pickles": {
+						"price": 0.39
+					},
+					"pineapple": {
+						"price": 0
+					},
+					"sauerkraut": {
+						"price": 0.91
+					},
+					"tomatoes": {
+						"price": 0.39
+					},
+					"chipotle aioli": {
+						"price": 0
+					},
+					"citrus pineapple aioli": {
+						"price": 0
+					},
+					"garlic pesto aioli": {
+						"price": 0
+					}
+				},
+				"modifiers": [
+					"add",
+					"easy",
+					"extra",
+					"no"
+				]
+			},
+			"meal option": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"a la carte": {
+						"price": 11.6
+					},
+					"meal": {
+						"price": 16.6
+					}
+				}
+			},
+			"side options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "regular fries",
+				"choices": {
+					"regular fries": {
+						"price": 0
+					},
+					"chili fries": {
+						"price": 1.65
+					},
+					"chili cheese fries": {
+						"price": 2.64
+					},
+					"onion chips": {
+						"price": 0
+					},
+					"chriscut fries": {
+						"price": 1.18
+					},
+					"garlic fries": {
+						"price": 2.4
+					},
+					"sweet potato fries": {
+						"price": 1.4
+					}
+				}
+			},
+			"drink options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"apple juice": {
+						"price": 0
+					},
+					"arnold palmer": {
+						"price": 0
+					},
+					"banana shake": {
+						"price": 3.23
+					},
+					"barqs root beer": {
+						"price": 0
+					},
+					"bottled water": {
+						"price": 0
+					},
+					"caramel frappucino": {
+						"price": 2.91
+					},
+					"cherry coke": {
+						"price": 0
+					},
+					"chocolate milk": {
+						"price": 0
+					},
+					"chocolate shake": {
+						"price": 3.23
+					},
+					"coffee": {
+						"price": 0
+					},
+					"coke": {
+						"price": 0
+					},
+					"diet coke": {
+						"price": 0
+					},
+					"fanta": {
+						"price": 0
+					},
+					"frappucino": {
+						"price": 2.45
+					},
+					"iced coffee": {
+						"price": 0
+					},
+					"lemonade": {
+						"price": 0
+					},
+					"mango shake": {
+						"price": 4.12
+					},
+					"mango smoothie": {
+						"price": 3.32
+					},
+					"milk": {
+						"price": 0
+					},
+					"mocha frappucino": {
+						"price": 2.91
+					},
+					"mr pibb": {
+						"price": 0
+					},
+					"neopolitan shake": {
+						"price": 4.26
+					},
+					"powerade": {
+						"price": 0
+					},
+					"raspberry tea": {
+						"price": 0
+					},
+					"redbull": {
+						"price": 0.63
+					},
+					"rockstar": {
+						"price": 0.63
+					},
+					"rootbeer float": {
+						"price": 2.32
+					},
+					"rootbeer shake": {
+						"price": 3.23
+					},
+					"sprite": {
+						"price": 0
+					},
+					"strawberry shake": {
+						"price": 3.23
+					},
+					"strawberry smoothie": {
+						"price": 3.32
+					},
+					"unsweetened tea": {
+						"price": 0
+					},
+					"vanilla shake": {
+						"price": 3.23
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Chicken Breast Nuggets (6 Pc)",
+		"itemType": "main - meal option",
+		"description": "6-piece chicken breast nuggets meal.",
+		"options": {
+			"meal option": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"a la carte": {
+						"price": 7.24
+					},
+					"meal": {
+						"price": 13.24
+					}
+				}
+			},
+			"customizations": {
+				"required": false,
+				"minimum": 0,
+				"maximum": 14,
+				"choices": {
+					"american cheese": {
+						"price": 1.23
+					},
+					"cheddar cheese": {
+						"price": 1.23
+					},
+					"swiss cheese": {
+						"price": 1.23
+					},
+					"barbecue sauce": {
+						"price": 0
+					},
+					"brown mustard": {
+						"price": 0
+					},
+					"ketchup": {
+						"price": 0
+					},
+					"marinara sauce": {
+						"price": 0
+					},
+					"mayo": {
+						"price": 0
+					},
+					"mustard": {
+						"price": 0
+					},
+					"ranch": {
+						"price": 0
+					},
+					"relish": {
+						"price": 0
+					},
+					"thousand island": {
+						"price": 0
+					},
+					"bacon": {
+						"price": 1.59
+					},
+					"bell peppers": {
+						"price": 0
+					},
+					"celery salt": {
+						"price": 0
+					},
+					"chili": {
+						"price": 1.23
+					},
+					"chili peppers": {
+						"price": 0
+					},
+					"grilled onions": {
+						"price": 0
+					},
+					"grilled bell peppers": {
+						"price": 0
+					},
+					"jalapeño": {
+						"price": 0.73
+					},
+					"lettuce": {
+						"price": 0
+					},
+					"mushrooms": {
+						"price": 1.23
+					},
+					"onions": {
+						"price": 0
+					},
+					"pickles": {
+						"price": 0.39
+					},
+					"pineapple": {
+						"price": 0
+					},
+					"sauerkraut": {
+						"price": 0.91
+					},
+					"tomatoes": {
+						"price": 0.39
+					},
+					"chipotle aioli": {
+						"price": 0
+					},
+					"citrus pineapple aioli": {
+						"price": 0
+					},
+					"garlic pesto aioli": {
+						"price": 0
+					}
+				},
+				"modifiers": [
+					"add",
+					"easy",
+					"extra",
+					"no"
+				]
+			},
+			"side options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "regular fries",
+				"choices": {
+					"regular fries": {
+						"price": 0
+					},
+					"chili fries": {
+						"price": 1.65
+					},
+					"chili cheese fries": {
+						"price": 2.64
+					},
+					"onion chips": {
+						"price": 0
+					},
+					"chriscut fries": {
+						"price": 1.18
+					},
+					"garlic fries": {
+						"price": 2.4
+					},
+					"sweet potato fries": {
+						"price": 1.4
+					}
+				}
+			},
+			"drink options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"apple juice": {
+						"price": 0
+					},
+					"arnold palmer": {
+						"price": 0
+					},
+					"banana shake": {
+						"price": 3.23
+					},
+					"barqs root beer": {
+						"price": 0
+					},
+					"bottled water": {
+						"price": 0
+					},
+					"caramel frappucino": {
+						"price": 2.91
+					},
+					"cherry coke": {
+						"price": 0
+					},
+					"chocolate milk": {
+						"price": 0
+					},
+					"chocolate shake": {
+						"price": 3.23
+					},
+					"coffee": {
+						"price": 0
+					},
+					"coke": {
+						"price": 0
+					},
+					"diet coke": {
+						"price": 0
+					},
+					"fanta": {
+						"price": 0
+					},
+					"frappucino": {
+						"price": 2.45
+					},
+					"iced coffee": {
+						"price": 0
+					},
+					"lemonade": {
+						"price": 0
+					},
+					"mango shake": {
+						"price": 4.12
+					},
+					"mango smoothie": {
+						"price": 3.32
+					},
+					"milk": {
+						"price": 0
+					},
+					"mocha frappucino": {
+						"price": 2.91
+					},
+					"mr pibb": {
+						"price": 0
+					},
+					"neopolitan shake": {
+						"price": 4.26
+					},
+					"powerade": {
+						"price": 0
+					},
+					"raspberry tea": {
+						"price": 0
+					},
+					"redbull": {
+						"price": 0.63
+					},
+					"rockstar": {
+						"price": 0.63
+					},
+					"rootbeer float": {
+						"price": 2.32
+					},
+					"rootbeer shake": {
+						"price": 3.23
+					},
+					"sprite": {
+						"price": 0
+					},
+					"strawberry shake": {
+						"price": 3.23
+					},
+					"strawberry smoothie": {
+						"price": 3.32
+					},
+					"unsweetened tea": {
+						"price": 0
+					},
+					"vanilla shake": {
+						"price": 3.23
+					}
+				}
+			}
+		},
+		"relatedItems": [
+			"Chicken Breast Nuggets (10 Pc)",
+			"Chicken Nuggets Fun Pack Meal (4 Pc)"
+		]
+	},
+	{
+		"itemName": "Chicken Breast Nuggets (10 Pc)",
+		"itemType": "main - meal option",
+		"description": "10-piece chicken nuggets served with a choice of drink: variety of shakes, sodas, juices, coffee, tea, sports, and energy drinks.",
+		"options": {
+			"meal option": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"a la carte": {
+						"price": 11.38
+					},
+					"meal": {
+						"price": 17.38
+					}
+				}
+			},
+			"customizations": {
+				"required": false,
+				"minimum": 0,
+				"maximum": 14,
+				"choices": {
+					"american cheese": {
+						"price": 1.23
+					},
+					"cheddar cheese": {
+						"price": 1.23
+					},
+					"swiss cheese": {
+						"price": 1.23
+					},
+					"barbecue sauce": {
+						"price": 0
+					},
+					"brown mustard": {
+						"price": 0
+					},
+					"ketchup": {
+						"price": 0
+					},
+					"marinara sauce": {
+						"price": 0
+					},
+					"mayo": {
+						"price": 0
+					},
+					"mustard": {
+						"price": 0
+					},
+					"ranch": {
+						"price": 0
+					},
+					"relish": {
+						"price": 0
+					},
+					"thousand island": {
+						"price": 0
+					},
+					"bacon": {
+						"price": 1.59
+					},
+					"bell peppers": {
+						"price": 0
+					},
+					"celery salt": {
+						"price": 0
+					},
+					"chili": {
+						"price": 1.23
+					},
+					"chili peppers": {
+						"price": 0
+					},
+					"grilled onions": {
+						"price": 0
+					},
+					"grilled bell peppers": {
+						"price": 0
+					},
+					"jalapeño": {
+						"price": 0.73
+					},
+					"lettuce": {
+						"price": 0
+					},
+					"mushrooms": {
+						"price": 1.23
+					},
+					"onions": {
+						"price": 0
+					},
+					"pickles": {
+						"price": 0.39
+					},
+					"pineapple": {
+						"price": 0
+					},
+					"sauerkraut": {
+						"price": 0.91
+					},
+					"tomatoes": {
+						"price": 0.39
+					},
+					"chipotle aioli": {
+						"price": 0
+					},
+					"citrus pineapple aioli": {
+						"price": 0
+					},
+					"garlic pesto aioli": {
+						"price": 0
+					}
+				},
+				"modifiers": [
+					"add",
+					"easy",
+					"extra",
+					"no"
+				]
+			},
+			"side options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "regular fries",
+				"choices": {
+					"regular fries": {
+						"price": 0
+					},
+					"chili fries": {
+						"price": 1.65
+					},
+					"chili cheese fries": {
+						"price": 2.64
+					},
+					"onion chips": {
+						"price": 0
+					},
+					"chriscut fries": {
+						"price": 1.18
+					},
+					"garlic fries": {
+						"price": 2.4
+					},
+					"sweet potato fries": {
+						"price": 1.4
+					}
+				}
+			},
+			"drink options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"apple juice": {
+						"price": 0
+					},
+					"arnold palmer": {
+						"price": 0
+					},
+					"banana shake": {
+						"price": 3.23
+					},
+					"barqs root beer": {
+						"price": 0
+					},
+					"bottled water": {
+						"price": 0
+					},
+					"caramel frappucino": {
+						"price": 2.91
+					},
+					"cherry coke": {
+						"price": 0
+					},
+					"chocolate milk": {
+						"price": 0
+					},
+					"chocolate shake": {
+						"price": 3.23
+					},
+					"coffee": {
+						"price": 0
+					},
+					"coke": {
+						"price": 0
+					},
+					"diet coke": {
+						"price": 0
+					},
+					"fanta": {
+						"price": 0
+					},
+					"frappucino": {
+						"price": 2.45
+					},
+					"iced coffee": {
+						"price": 0
+					},
+					"lemonade": {
+						"price": 0
+					},
+					"mango shake": {
+						"price": 4.12
+					},
+					"mango smoothie": {
+						"price": 3.32
+					},
+					"milk": {
+						"price": 0
+					},
+					"mocha frappucino": {
+						"price": 2.91
+					},
+					"mr pibb": {
+						"price": 0
+					},
+					"neopolitan shake": {
+						"price": 4.26
+					},
+					"powerade": {
+						"price": 0
+					},
+					"raspberry tea": {
+						"price": 0
+					},
+					"redbull": {
+						"price": 0.63
+					},
+					"rockstar": {
+						"price": 0.63
+					},
+					"rootbeer float": {
+						"price": 2.32
+					},
+					"rootbeer shake": {
+						"price": 3.23
+					},
+					"sprite": {
+						"price": 0
+					},
+					"strawberry shake": {
+						"price": 3.23
+					},
+					"strawberry smoothie": {
+						"price": 3.32
+					},
+					"unsweetened tea": {
+						"price": 0
+					},
+					"vanilla shake": {
+						"price": 3.23
+					}
+				}
+			}
+		},
+		"relatedItems": [
+			"Chicken Breast Nuggets (6 Pc)",
+			"Chicken Nuggets Fun Pack Meal (4 Pc"
+		]
+	},
+	{
+		"itemName": "Grilled Organic Chicken Breast Sandwich",
+		"itemType": "main - meal option",
+		"description": "Grilled organic chicken breast sandwich. Comes with a sauce of their choice.",
+		"options": {
+			"sauce": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "plain",
+				"choices": {
+					"garlic pesto aioli": {
+						"price": 0
+					},
+					"chipotle aioli": {
+						"price": 0
+					},
+					"citrus pineapple aioli": {
+						"price": 0
+					},
+					"mayo": {
+						"price": 0
+					},
+					"bbq sauce": {
+						"price": 0
+					},
+					"plain": {
+						"price": 0
+					}
+				}
+			},
+			"meal option": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"a la carte": {
+						"price": 8.5
+					},
+					"meal": {
+						"price": 14.5
+					}
+				}
+			},
+			"side options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "regular fries",
+				"choices": {
+					"regular fries": {
+						"price": 0
+					},
+					"chili fries": {
+						"price": 1.65
+					},
+					"chili cheese fries": {
+						"price": 2.64
+					},
+					"onion chips": {
+						"price": 0
+					},
+					"chriscut fries": {
+						"price": 1.18
+					},
+					"garlic fries": {
+						"price": 2.4
+					},
+					"sweet potato fries": {
+						"price": 1.4
+					}
+				}
+			},
+			"drink options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"apple juice": {
+						"price": 0
+					},
+					"arnold palmer": {
+						"price": 0
+					},
+					"banana shake": {
+						"price": 3.23
+					},
+					"barqs root beer": {
+						"price": 0
+					},
+					"bottled water": {
+						"price": 0
+					},
+					"caramel frappucino": {
+						"price": 2.91
+					},
+					"cherry coke": {
+						"price": 0
+					},
+					"chocolate milk": {
+						"price": 0
+					},
+					"chocolate shake": {
+						"price": 3.23
+					},
+					"coffee": {
+						"price": 0
+					},
+					"coke": {
+						"price": 0
+					},
+					"diet coke": {
+						"price": 0
+					},
+					"fanta": {
+						"price": 0
+					},
+					"frappucino": {
+						"price": 2.45
+					},
+					"iced coffee": {
+						"price": 0
+					},
+					"lemonade": {
+						"price": 0
+					},
+					"mango shake": {
+						"price": 4.12
+					},
+					"mango smoothie": {
+						"price": 3.32
+					},
+					"milk": {
+						"price": 0
+					},
+					"mocha frappucino": {
+						"price": 2.91
+					},
+					"mr pibb": {
+						"price": 0
+					},
+					"neopolitan shake": {
+						"price": 4.26
+					},
+					"powerade": {
+						"price": 0
+					},
+					"raspberry tea": {
+						"price": 0
+					},
+					"redbull": {
+						"price": 0.63
+					},
+					"rockstar": {
+						"price": 0.63
+					},
+					"rootbeer float": {
+						"price": 2.32
+					},
+					"rootbeer shake": {
+						"price": 3.23
+					},
+					"sprite": {
+						"price": 0
+					},
+					"strawberry shake": {
+						"price": 3.23
+					},
+					"strawberry smoothie": {
+						"price": 3.32
+					},
+					"unsweetened tea": {
+						"price": 0
+					},
+					"vanilla shake": {
+						"price": 3.23
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "BLT Sandwich",
+		"itemType": "main - meal option",
+		"description": "BLT Sandwich with Mayo, Bacon, Lettuce, Tomato on Artesan Bread",
+		"options": {
+			"customizations": {
+				"required": true,
+				"minimum": 0,
+				"maximum": 14,
+				"choices": {
+					"american cheese": {
+						"price": 1.23
+					},
+					"cheddar cheese": {
+						"price": 1.23
+					},
+					"swiss cheese": {
+						"price": 1.23
+					},
+					"barbecue sauce": {
+						"price": 0
+					},
+					"brown mustard": {
+						"price": 0
+					},
+					"ketchup": {
+						"price": 0
+					},
+					"marinara sauce": {
+						"price": 0
+					},
+					"mayo": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"mustard": {
+						"price": 0
+					},
+					"ranch": {
+						"price": 0
+					},
+					"relish": {
+						"price": 0
+					},
+					"thousand island": {
+						"price": 0
+					},
+					"bacon": {
+						"price": 1.59,
+						"isBaseIngredient": true
+					},
+					"bell peppers": {
+						"price": 0
+					},
+					"celery salt": {
+						"price": 0
+					},
+					"chili": {
+						"price": 1.23
+					},
+					"chili peppers": {
+						"price": 0
+					},
+					"grilled onions": {
+						"price": 0
+					},
+					"grilled bell peppers": {
+						"price": 0
+					},
+					"jalapeño": {
+						"price": 0.73
+					},
+					"lettuce": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"mushrooms": {
+						"price": 1.23
+					},
+					"onions": {
+						"price": 0
+					},
+					"pickles": {
+						"price": 0.39
+					},
+					"pineapple": {
+						"price": 0
+					},
+					"sauerkraut": {
+						"price": 0.91
+					},
+					"tomatoes": {
+						"price": 0.39,
+						"isBaseIngredient": true
+					},
+					"chipotle aioli": {
+						"price": 0
+					},
+					"citrus pineapple aioli": {
+						"price": 0
+					},
+					"garlic pesto aioli": {
+						"price": 0
+					}
+				},
+				"modifiers": [
+					"add",
+					"easy",
+					"extra",
+					"no"
+				]
+			},
+			"meal option": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"a la carte": {
+						"price": 5.92
+					},
+					"meal": {
+						"price": 11.92
+					}
+				}
+			},
+			"side options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "regular fries",
+				"choices": {
+					"regular fries": {
+						"price": 0
+					},
+					"chili fries": {
+						"price": 1.65
+					},
+					"chili cheese fries": {
+						"price": 2.64
+					},
+					"onion chips": {
+						"price": 0
+					},
+					"chriscut fries": {
+						"price": 1.18
+					},
+					"garlic fries": {
+						"price": 2.4
+					},
+					"sweet potato fries": {
+						"price": 1.4
+					}
+				}
+			},
+			"drink options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"apple juice": {
+						"price": 0
+					},
+					"arnold palmer": {
+						"price": 0
+					},
+					"banana shake": {
+						"price": 3.23
+					},
+					"barqs root beer": {
+						"price": 0
+					},
+					"bottled water": {
+						"price": 0
+					},
+					"caramel frappucino": {
+						"price": 2.91
+					},
+					"cherry coke": {
+						"price": 0
+					},
+					"chocolate milk": {
+						"price": 0
+					},
+					"chocolate shake": {
+						"price": 3.23
+					},
+					"coffee": {
+						"price": 0
+					},
+					"coke": {
+						"price": 0
+					},
+					"diet coke": {
+						"price": 0
+					},
+					"fanta": {
+						"price": 0
+					},
+					"frappucino": {
+						"price": 2.45
+					},
+					"iced coffee": {
+						"price": 0
+					},
+					"lemonade": {
+						"price": 0
+					},
+					"mango shake": {
+						"price": 4.12
+					},
+					"mango smoothie": {
+						"price": 3.32
+					},
+					"milk": {
+						"price": 0
+					},
+					"mocha frappucino": {
+						"price": 2.91
+					},
+					"mr pibb": {
+						"price": 0
+					},
+					"neopolitan shake": {
+						"price": 4.26
+					},
+					"powerade": {
+						"price": 0
+					},
+					"raspberry tea": {
+						"price": 0
+					},
+					"redbull": {
+						"price": 0.63
+					},
+					"rockstar": {
+						"price": 0.63
+					},
+					"rootbeer float": {
+						"price": 2.32
+					},
+					"rootbeer shake": {
+						"price": 3.23
+					},
+					"sprite": {
+						"price": 0
+					},
+					"strawberry shake": {
+						"price": 3.23
+					},
+					"strawberry smoothie": {
+						"price": 3.32
+					},
+					"unsweetened tea": {
+						"price": 0
+					},
+					"vanilla shake": {
+						"price": 3.23
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Philly Cheese Chicken Sandwich",
+		"itemType": "main - meal option",
+		"description": "Philly cheese chicken sandwich with mayo, grilled onions, grilled bell peppers, and cheese.",
+		"options": {
+			"customizations": {
+				"required": true,
+				"minimum": 0,
+				"maximum": 14,
+				"choices": {
+					"american cheese": {
+						"price": 1.23,
+						"isBaseIngredient": true
+					},
+					"cheddar cheese": {
+						"price": 1.23
+					},
+					"swiss cheese": {
+						"price": 1.23
+					},
+					"barbecue sauce": {
+						"price": 0
+					},
+					"brown mustard": {
+						"price": 0
+					},
+					"ketchup": {
+						"price": 0
+					},
+					"marinara sauce": {
+						"price": 0
+					},
+					"mayo": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"mustard": {
+						"price": 0
+					},
+					"ranch": {
+						"price": 0
+					},
+					"relish": {
+						"price": 0
+					},
+					"thousand island": {
+						"price": 0
+					},
+					"bacon": {
+						"price": 1.59
+					},
+					"bell peppers": {
+						"price": 0
+					},
+					"celery salt": {
+						"price": 0
+					},
+					"chili": {
+						"price": 1.23
+					},
+					"chili peppers": {
+						"price": 0
+					},
+					"grilled onions": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"grilled bell peppers": {
+						"price": 0,
+						"isBaseIngredient": true
+					},
+					"jalapeño": {
+						"price": 0.73
+					},
+					"lettuce": {
+						"price": 0
+					},
+					"mushrooms": {
+						"price": 1.23
+					},
+					"onions": {
+						"price": 0
+					},
+					"pickles": {
+						"price": 0.39
+					},
+					"pineapple": {
+						"price": 0
+					},
+					"sauerkraut": {
+						"price": 0.91
+					},
+					"tomatoes": {
+						"price": 0.39
+					},
+					"chipotle aioli": {
+						"price": 0
+					},
+					"citrus pineapple aioli": {
+						"price": 0
+					},
+					"garlic pesto aioli": {
+						"price": 0
+					}
+				},
+				"modifiers": [
+					"add",
+					"easy",
+					"extra",
+					"no"
+				]
+			},
+			"meal option": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"a la carte": {
+						"price": 9.16
+					},
+					"meal": {
+						"price": 15.16
+					}
+				}
+			},
+			"side options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "regular fries",
+				"choices": {
+					"regular fries": {
+						"price": 0
+					},
+					"chili fries": {
+						"price": 1.65
+					},
+					"chili cheese fries": {
+						"price": 2.64
+					},
+					"onion chips": {
+						"price": 0
+					},
+					"chriscut fries": {
+						"price": 1.18
+					},
+					"garlic fries": {
+						"price": 2.4
+					},
+					"sweet potato fries": {
+						"price": 1.4
+					}
+				}
+			},
+			"drink options": {
+				"required": {
+					"option": "meal option",
+					"value": "meal"
+				},
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"apple juice": {
+						"price": 0
+					},
+					"arnold palmer": {
+						"price": 0
+					},
+					"banana shake": {
+						"price": 3.23
+					},
+					"barqs root beer": {
+						"price": 0
+					},
+					"bottled water": {
+						"price": 0
+					},
+					"caramel frappucino": {
+						"price": 2.91
+					},
+					"cherry coke": {
+						"price": 0
+					},
+					"chocolate milk": {
+						"price": 0
+					},
+					"chocolate shake": {
+						"price": 3.23
+					},
+					"coffee": {
+						"price": 0
+					},
+					"coke": {
+						"price": 0
+					},
+					"diet coke": {
+						"price": 0
+					},
+					"fanta": {
+						"price": 0
+					},
+					"frappucino": {
+						"price": 2.45
+					},
+					"iced coffee": {
+						"price": 0
+					},
+					"lemonade": {
+						"price": 0
+					},
+					"mango shake": {
+						"price": 4.12
+					},
+					"mango smoothie": {
+						"price": 3.32
+					},
+					"milk": {
+						"price": 0
+					},
+					"mocha frappucino": {
+						"price": 2.91
+					},
+					"mr pibb": {
+						"price": 0
+					},
+					"neopolitan shake": {
+						"price": 4.26
+					},
+					"powerade": {
+						"price": 0
+					},
+					"raspberry tea": {
+						"price": 0
+					},
+					"redbull": {
+						"price": 0.63
+					},
+					"rockstar": {
+						"price": 0.63
+					},
+					"rootbeer float": {
+						"price": 2.32
+					},
+					"rootbeer shake": {
+						"price": 3.23
+					},
+					"sprite": {
+						"price": 0
+					},
+					"strawberry shake": {
+						"price": 3.23
+					},
+					"strawberry smoothie": {
+						"price": 3.32
+					},
+					"unsweetened tea": {
+						"price": 0
+					},
+					"vanilla shake": {
+						"price": 3.23
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Regular Fries",
+		"itemType": "side",
+		"description": "Crispy regular fries, available in large, medium, and small sizes.",
+		"options": {
+			"size": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "medium",
+				"choices": {
+					"small": {
+						"price": 3
+					},
+					"medium": {
+						"price": 3.6
+					},
+					"large": {
+						"price": 4.37
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Chriscut Fries",
+		"itemType": "side",
+		"description": "Crispy chriscut fries, available in large size only.",
+		"options": {
+			"size": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"large": {
+						"price": 4.78
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Onion Chips",
+		"itemType": "side",
+		"description": "Thinly sliced onions, crispy fried. Available in medium or small.",
+		"options": {
+			"size": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "medium",
+				"choices": {
+					"medium": {
+						"price": 3.73
+					},
+					"small": {
+						"price": 4.14
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Chili Fries",
+		"itemType": "side",
+		"description": "Large crispy regular fries topped with hearty chili and melted cheese.",
+		"price": 5.23,
+		"options": {
+			"toppings": {
+				"required": true,
+				"minimum": 0,
+				"maximum": 2,
+				"choices": {
+					"cheese": {
+						"price": 1.23
+					},
+					"onions": {
+						"price": 0
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Garlic Fries",
+		"itemType": "side",
+		"description": "Crispy fries tossed with minced garlic and herbs.",
+		"price": 6,
+		"options": {}
+	},
+	{
+		"itemName": "Sweet Potato Fries",
+		"itemType": "side",
+		"description": "Crispy sweet potato fries, available in large, medium, or small sizes.",
+		"options": {
+			"size": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "medium",
+				"choices": {
+					"small": {
+						"price": 3.96
+					},
+					"medium": {
+						"price": 5
+					},
+					"large": {
+						"price": 5.46
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Bowl of Chili",
+		"itemType": "side",
+		"description": "Recommended with Cheese & Onions",
+		"price": 4.78,
+		"options": {
+			"customizations": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 2,
+				"choices": {
+					"no onion": {
+						"price": 0
+					},
+					"no cheese": {
+						"price": 0
+					},
+					"add cheddar": {
+						"price": 0.83
+					},
+					"add onions": {
+						"price": 0
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Apple Juice",
+		"description": "",
+		"itemType": "drink",
+		"price": 3,
+		"options": {}
+	},
+	{
+		"itemName": "Chocolate Milk",
+		"itemType": "drink",
+		"description": "",
+		"price": 3,
+		"options": {}
+	},
+	{
+		"itemName": "Milk",
+		"itemType": "drink",
+		"description": "",
+		"price": 3,
+		"options": {}
+	},
+	{
+		"itemName": "Orange Juice",
+		"itemType": "drink",
+		"description": "",
+		"price": 3,
+		"options": {}
+	},
+	{
+		"itemName": "Arnold Palmer",
+		"itemType": "drink",
+		"description": "",
+		"options": {
+			"size": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "medium",
+				"choices": {
+					"small": {
+						"price": 3
+					},
+					"medium": {
+						"price": 3.5
+					},
+					"large": {
+						"price": 4.16
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Cherry Coke",
+		"description": "",
+		"itemType": "drink",
+		"options": {
+			"size": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "medium",
+				"choices": {
+					"small": {
+						"price": 3
+					},
+					"medium": {
+						"price": 3.5
+					},
+					"large": {
+						"price": 4.16
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Coffee",
+		"itemType": "drink",
+		"description": "",
+		"options": {
+			"customizations": {
+				"required": false,
+				"minimum": 0,
+				"maximum": 14,
+				"choices": {
+					"add cream": {
+						"price": 0
+					},
+					"add milk": {
+						"price": 0
+					},
+					"no milk": {
+						"price": 0
+					},
+					"add sugar": {
+						"price": 0
+					},
+					"add splenda": {
+						"price": 0
+					},
+					"add mocha almond": {
+						"price": 0.49
+					},
+					"add amaretto": {
+						"price": 0.49
+					},
+					"add caramel": {
+						"price": 0.49
+					},
+					"add vanilla": {
+						"price": 0.49
+					},
+					"add hazelnut": {
+						"price": 0.49
+					},
+					"add banana de creme": {
+						"price": 0.49
+					}
+				}
+			},
+			"size": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "medium",
+				"choices": {
+					"small": {
+						"price": 3
+					},
+					"medium": {
+						"price": 3.5
+					},
+					"large": {
+						"price": 4.16
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Coke",
+		"itemType": "drink",
+		"description": "",
+		"options": {
+			"size": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "medium",
+				"choices": {
+					"small": {
+						"price": 3
+					},
+					"medium": {
+						"price": 3.5
+					},
+					"large": {
+						"price": 4.16
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Diet Coke",
+		"description": "",
+		"itemType": "drink",
+		"options": {
+			"size": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "medium",
+				"choices": {
+					"small": {
+						"price": 3
+					},
+					"medium": {
+						"price": 3.5
+					},
+					"large": {
+						"price": 4.16
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Fanta",
+		"itemType": "drink",
+		"description": "",
+		"options": {
+			"size": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "medium",
+				"choices": {
+					"small": {
+						"price": 3
+					},
+					"medium": {
+						"price": 3.5
+					},
+					"large": {
+						"price": 4.16
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Lemonade",
+		"description": "",
+		"itemType": "drink",
+		"options": {
+			"size": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "medium",
+				"choices": {
+					"small": {
+						"price": 3
+					},
+					"medium": {
+						"price": 3.5
+					},
+					"large": {
+						"price": 4.16
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Root Beer",
+		"itemType": "drink",
+		"description": "",
+		"options": {
+			"size": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "medium",
+				"choices": {
+					"small": {
+						"price": 3
+					},
+					"medium": {
+						"price": 3.5
+					},
+					"large": {
+						"price": 4.16
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Sprite",
+		"itemType": "drink",
+		"description": "",
+		"options": {
+			"size": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "medium",
+				"choices": {
+					"small": {
+						"price": 3
+					},
+					"medium": {
+						"price": 3.5
+					},
+					"large": {
+						"price": 4.16
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Unsweetened Iced Tea",
+		"itemType": "drink",
+		"description": "",
+		"options": {
+			"size": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "medium",
+				"choices": {
+					"small": {
+						"price": 3
+					},
+					"medium": {
+						"price": 3.5
+					},
+					"large": {
+						"price": 4.16
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Red Bull",
+		"itemType": "drink",
+		"description": "",
+		"price": 3.82,
+		"options": {}
+	},
+	{
+		"itemName": "Rockstar",
+		"itemType": "drink",
+		"description": "",
+		"price": 3.82,
+		"options": {}
+	},
+	{
+		"itemName": "Sugar Free Rockstar",
+		"itemType": "drink",
+		"description": "",
+		"price": 3.82,
+		"options": {}
+	},
+	{
+		"itemName": "Bottled Water",
+		"itemType": "drink",
+		"description": "",
+		"price": 0.92,
+		"options": {}
+	},
+	{
+		"itemName": "Espresso",
+		"itemType": "drink",
+		"description": "small is 1 shot and medium is 2 shots",
+		"options": {
+			"size": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "2 shots",
+				"choices": {
+					"1 shot": {
+						"price": 2.19
+					},
+					"2 shots": {
+						"price": 2.5
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Apple Pie",
+		"itemType": "dessert",
+		"description": "A slice of classic apple pie.",
+		"price": 5,
+		"options": {}
+	},
+	{
+		"itemName": "Chocolate Cake",
+		"itemType": "dessert",
+		"description": "A slice of rich and moist chocolate cake.",
+		"price": 5,
+		"options": {}
+	},
+	{
+		"itemName": "Rootbeer Freeze Shake",
+		"itemType": "dessert",
+		"description": "Classic rootbeer freeze milkshake.",
+		"options": {
+			"size": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "medium",
+				"choices": {
+					"small": {
+						"price": 6.23
+					},
+					"medium": {
+						"price": 7.26
+					},
+					"large": {
+						"price": 10.92
+					}
+				}
+			},
+			"add ons": {
+				"required": false,
+				"minimum": 0,
+				"maximum": 1,
+				"choices": {
+					"malt": {
+						"price": 0.35
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Banana Shake",
+		"itemType": "dessert",
+		"description": "Classic banana milkshake.",
+		"options": {
+			"size": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "medium",
+				"choices": {
+					"small": {
+						"price": 6.23
+					},
+					"medium": {
+						"price": 7.26
+					},
+					"large": {
+						"price": 10.92
+					}
+				}
+			},
+			"add ons": {
+				"required": false,
+				"minimum": 0,
+				"maximum": 1,
+				"choices": {
+					"malt": {
+						"price": 0.35
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Vanilla Shake",
+		"itemType": "dessert",
+		"description": "Classic vanilla milkshake.",
+		"options": {
+			"size": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "medium",
+				"choices": {
+					"small": {
+						"price": 6.23
+					},
+					"medium": {
+						"price": 7.26
+					},
+					"large": {
+						"price": 10.92
+					}
+				}
+			},
+			"add ons": {
+				"required": false,
+				"minimum": 0,
+				"maximum": 1,
+				"choices": {
+					"malt": {
+						"price": 0.35
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Espresso Shake",
+		"itemType": "dessert",
+		"description": "Rich and creamy espresso shake. Both sizes come with 2 shots of espresso.",
+		"options": {
+			"size": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "medium",
+				"choices": {
+					"medium": {
+						"price": 7.26
+					},
+					"large": {
+						"price": 10.92
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Neapolitan Shake",
+		"itemType": "dessert",
+		"description": "Chocolate, vanilla, and strawberry shake.",
+		"options": {
+			"size": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "medium",
+				"choices": {
+					"medium": {
+						"price": 7.26
+					},
+					"large": {
+						"price": 10.92
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Rootbeer Float",
+		"itemType": "dessert",
+		"price": 5.32,
+		"options": {},
+		"description": ""
+	},
+	{
+		"itemName": "Strawberry Smoothie",
+		"itemType": "dessert",
+		"description": "Refreshing strawberry fruit smoothie.",
+		"options": {
+			"size": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "medium",
+				"choices": {
+					"small": {
+						"price": 5.46
+					},
+					"medium": {
+						"price": 6.32
+					},
+					"large": {
+						"price": 7.99
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Blue Bunny Ice Cream",
+		"itemType": "dessert",
+		"description": "",
+		"options": {
+			"size": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "single",
+				"choices": {
+					"child": {
+						"price": 2.25
+					},
+					"single": {
+						"price": 4.1
+					},
+					"double": {
+						"price": 6.14
+					},
+					"triple": {
+						"price": 8.74
+					}
+				}
+			},
+			"flavor": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"Bunny Tracks": {
+						"price": 0,
+						"description": "Vanilla ice cream with chocolate peanut, butter bunnies, and fudge swirls."
+					},
+					"Butter Pecan": {
+						"price": 0
+					},
+					"Cherry Cheesecake": {
+						"price": 0
+					},
+					"Strawberry Swirl": {
+						"price": 0
+					},
+					"Vanilla": {
+						"price": 0
+					},
+					"Chocolate": {
+						"price": 0
+					}
+				}
+			},
+			"cone type": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "regular cone",
+				"choices": {
+					"regular cone": {
+						"price": 0
+					},
+					"sugar cone": {
+						"price": 0
+					},
+					"waffle cone": {
+						"price": 2
+					},
+					"cup": {
+						"price": 0
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Italian Gelato",
+		"itemType": "dessert",
+		"description": "",
+		"options": {
+			"flavor": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"choices": {
+					"Banana Dulce de Leche": {
+						"price": 0
+					},
+					"Pistachio": {
+						"price": 0
+					},
+					"Madagascar Vanilla": {
+						"price": 0
+					},
+					"Tiramisu": {
+						"price": 0
+					},
+					"Chocolate Chip": {
+						"price": 0
+					},
+					"Lemon Pie": {
+						"price": 0
+					},
+					"Mango Sorbet": {
+						"price": 0
+					}
+				}
+			},
+			"size": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "single",
+				"choices": {
+					"child": {
+						"price": 3.25
+					},
+					"single": {
+						"price": 5.69
+					},
+					"double": {
+						"price": 8.78
+					},
+					"triple": {
+						"price": 12.97
+					}
+				}
+			},
+			"cone type": {
+				"required": true,
+				"minimum": 1,
+				"maximum": 1,
+				"defaultChoice": "regular cone",
+				"choices": {
+					"regular cone": {
+						"price": 0
+					},
+					"sugar cone": {
+						"price": 0
+					},
+					"waffle cone": {
+						"price": 2
+					},
+					"cup": {
+						"price": 0
+					}
+				}
+			}
+		}
+	},
+	{
+		"itemName": "Pumpkin Pie",
+		"itemType": "dessert",
+		"description": "Delicious pumpkin pie made with organic filling",
+		"price": 5,
+		"options": {}
+	},
+	{
+		"itemName": "Ketchup Packet",
+		"itemType": "condiment",
+		"description": "packet of Ketchup",
+		"price": 0,
+		"options": {}
+	},
+	{
+		"itemName": "Mustard Packet",
+		"itemType": "condiment",
+		"description": "packet of Mustard",
+		"price": 0,
+		"options": {}
+	}
+]{
+  "items": [
+    {
+      "itemName": "Burger",
+      "optionKeys": ["Size", "Cheese", "Doneness"],
+      "optionValues": [
+        ["Regular", "Large"],
+        ["American", "Swiss", "Cheddar"],
+        ["Medium Rare", "Medium", "Well Done"]
+      ],
+      "price": 12.99
+    },
+    {
+      "itemName": "Pizza",
+      "optionKeys": ["Size", "Toppings"],
+      "optionValues": [
+        ["Small", "Medium", "Large"],
+        ["Pepperoni", "Mushrooms", "Onions", "Olives"]
+      ],
+      "price": 15.99
+    }
+  ]
+}

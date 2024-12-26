@@ -5,6 +5,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Order {
+    #[serde(rename = "orderId")]
     pub order_id: String,
     pub order: Vec<OrderItem>,
     pub messages: Vec<ChatMessage>,
@@ -13,8 +14,11 @@ pub struct Order {
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct OrderItem {
     pub id: String,
+    #[serde(rename = "itemName")]
     pub item_name: String,
+    #[serde(rename = "optionKeys")]
     pub option_keys: Vec<String>,
+    #[serde(rename = "optionValues")]
     pub option_values: Vec<Vec<String>>,
     pub price: f64,
 }

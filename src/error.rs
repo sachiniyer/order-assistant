@@ -3,6 +3,7 @@ use axum::{
     response::{IntoResponse, Response},
 };
 use redis::RedisError;
+use std::io;
 
 #[derive(Debug)]
 pub enum AppError {
@@ -10,6 +11,7 @@ pub enum AppError {
     JsonError(serde_json::Error),
     OrderNotFound(String),
     InvalidInput(String),
+    IoError(io::Error),
 }
 
 impl From<RedisError> for AppError {
@@ -24,6 +26,12 @@ impl From<serde_json::Error> for AppError {
     }
 }
 
+impl From<io::Error> for AppError {
+    fn from(err: io::Error) -> Self {
+        AppError::IoError(err)
+    }
+}
+
 impl IntoResponse for AppError {
     fn into_response(self) -> Response {
         let (status, message) = match self {
@@ -34,6 +42,7 @@ impl IntoResponse for AppError {
                 format!("Order with id {} not found", id),
             ),
             AppError::InvalidInput(msg) => (StatusCode::BAD_REQUEST, msg),
+            AppError::IoError(e) => (StatusCode::INTERNAL_SERVER_ERROR, e.to_string()),
         };
 
         (status, message).into_response()

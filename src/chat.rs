@@ -27,6 +27,7 @@ pub async fn handle_chat_message(store: &OrderStore, request: &ChatRequest) -> A
 
     let input = request.input.trim().to_lowercase();
 
+    // TODO(siyer): This needs to be written with an agent
     if input.starts_with("add ") {
         order = handle_add_item(&mut order, &request.input);
     } else if input.starts_with("remove ") {

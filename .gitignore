@@ -1,3 +1,5 @@
 /target
+Cargo.lock
+description.org
 .aider*
 .env

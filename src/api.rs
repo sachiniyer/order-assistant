@@ -42,7 +42,8 @@ pub struct AppState {
 }
 
 pub fn create_router() -> Router {
-    let redis_client = Client::open("redis://127.0.0.1/").expect("Failed to connect to Redis");
+    let redis_url = std::env::var("REDIS_URL").unwrap_or_else(|_| "redis://127.0.0.1/".to_string());
+    let redis_client = Client::open(redis_url).expect("Failed to connect to Redis");
     let store = OrderStore::new(redis_client);
     let state = AppState { store };
 

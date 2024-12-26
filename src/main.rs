@@ -1,8 +1,10 @@
 use customer_agent::api;
+use dotenv::dotenv;
 use std::net::SocketAddr;
 
 #[tokio::main]
 async fn main() {
+    dotenv().ok();
     let app = api::create_router();
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));

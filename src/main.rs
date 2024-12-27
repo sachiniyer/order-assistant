@@ -5,7 +5,7 @@ use std::net::SocketAddr;
 #[tokio::main]
 async fn main() {
     dotenv().ok();
-    let app = api::create_router();
+    let app = api::create_router().await;
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
     println!("Server running on http://{}", addr);

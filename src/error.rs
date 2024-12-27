@@ -1,3 +1,4 @@
+use async_openai::error::OpenAIError;
 use axum::{
     http::StatusCode,
     response::{IntoResponse, Response},
@@ -12,6 +13,7 @@ pub enum AppError {
     OrderNotFound(String),
     InvalidInput(String),
     IoError(io::Error),
+    OpenAIError(OpenAIError),
 }
 
 impl From<RedisError> for AppError {
@@ -32,6 +34,12 @@ impl From<io::Error> for AppError {
     }
 }
 
+impl From<OpenAIError> for AppError {
+    fn from(err: OpenAIError) -> Self {
+        AppError::OpenAIError(err)
+    }
+}
+
 impl IntoResponse for AppError {
     fn into_response(self) -> Response {
         let (status, message) = match self {
@@ -43,6 +51,7 @@ impl IntoResponse for AppError {
             ),
             AppError::InvalidInput(msg) => (StatusCode::BAD_REQUEST, msg),
             AppError::IoError(e) => (StatusCode::INTERNAL_SERVER_ERROR, e.to_string()),
+            AppError::OpenAIError(e) => (StatusCode::INTERNAL_SERVER_ERROR, e.to_string()),
         };
 
         (status, message).into_response()

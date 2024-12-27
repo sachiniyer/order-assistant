@@ -1,14 +1,17 @@
+use async_openai::{config::OpenAIConfig, Client as OpenAIClient};
 use axum::{
-    extract::Path,
+    extract::{Path, State},
     routing::{get, post},
     Json, Router,
 };
-use redis::Client;
+use redis::Client as RedisClient;
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
-use crate::chat::ChatMessage;
+use crate::chat::{handle_chat_message, ChatMessage};
 use crate::error::AppResult;
+use crate::functions::OrderAssistant;
+use crate::menu::Menu;
 use crate::order::{Order, OrderItem, OrderStore};
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -18,11 +21,13 @@ pub struct StartOrderRequest {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct StartOrderResponse {
+    #[serde(rename = "orderId")]
     pub order_id: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ChatRequest {
+    #[serde(rename = "orderId")]
     pub order_id: String,
     pub input: String,
     pub location: String,
@@ -39,13 +44,31 @@ pub struct GetOrderResponse {
 #[derive(Clone)]
 pub struct AppState {
     store: OrderStore,
+    #[allow(dead_code)] // NOTE(dev): This enables request level control over the assistant
+    menu: Menu,
+    assistant: OrderAssistant,
 }
 
-pub fn create_router() -> Router {
+pub async fn create_router() -> Router {
     let redis_url = std::env::var("REDIS_URL").unwrap_or_else(|_| "redis://127.0.0.1/".to_string());
-    let redis_client = Client::open(redis_url).expect("Failed to connect to Redis");
+    let redis_client = RedisClient::open(redis_url).expect("Failed to connect to Redis");
     let store = OrderStore::new(redis_client);
-    let state = AppState { store };
+
+    let menu = Menu::new().expect("Failed to load menu");
+
+    let openai_config = OpenAIConfig::new()
+        .with_api_key(std::env::var("OPENAI_API_KEY").expect("OPENAI_API_KEY is required"));
+    let mut assistant = OrderAssistant::new(OpenAIClient::with_config(openai_config));
+    assistant
+        .initialize_assistant(&menu)
+        .await
+        .expect("Failed to initialize assistant");
+
+    let state = AppState {
+        store,
+        assistant,
+        menu,
+    };
 
     Router::new()
         .route("/start", post(start_order))
@@ -55,7 +78,7 @@ pub fn create_router() -> Router {
 }
 
 async fn start_order(
-    state: axum::extract::State<AppState>,
+    State(state): State<AppState>,
     Json(_request): Json<StartOrderRequest>,
 ) -> AppResult<Json<StartOrderResponse>> {
     let order_id = Uuid::new_v4().to_string();
@@ -68,15 +91,15 @@ async fn start_order(
 }
 
 async fn send_chat_message(
-    state: axum::extract::State<AppState>,
+    State(state): State<AppState>,
     Json(request): Json<ChatRequest>,
 ) -> AppResult<Json<ChatResponse>> {
-    let response = crate::chat::handle_chat_message(&state.store, &request).await?;
+    let response = handle_chat_message(&state.store, &state.assistant, &request).await?;
     Ok(Json(response))
 }
 
 async fn get_order(
-    state: axum::extract::State<AppState>,
+    State(state): State<AppState>,
     Path(order_id): Path<String>,
 ) -> AppResult<Json<GetOrderResponse>> {
     let mut conn = state.store.get_connection()?;

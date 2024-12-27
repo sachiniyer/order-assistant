@@ -26,13 +26,13 @@ pub struct Choice {
     pub price: f64,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Menu {
     pub items: Vec<MenuItem>,
 }
 
 impl Menu {
-    pub fn load() -> AppResult<Self> {
+    pub fn new() -> AppResult<Self> {
         let content = fs::read_to_string(
             std::env::var("MENU_FILE").unwrap_or_else(|_| "static/menu.json".to_string()),
         )?;

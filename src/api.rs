@@ -1,11 +1,15 @@
 use async_openai::{config::OpenAIConfig, Client as OpenAIClient};
 use axum::{
     extract::{Path, State},
+    http::{header::AUTHORIZATION, Request, StatusCode},
+    middleware::{self, Next},
+    response::Response,
     routing::{get, post},
     Json, Router,
 };
 use redis::Client as RedisClient;
 use serde::{Deserialize, Serialize};
+use std::collections::HashSet;
 use uuid::Uuid;
 
 use crate::chat::{handle_chat_message, ChatMessage};
@@ -49,6 +53,7 @@ pub struct GetOrderResponse {
 
 #[derive(Clone)]
 pub struct AppState {
+    api_keys: HashSet<String>,
     store: OrderStore,
     // NOTE(dev): This enables request level control over the assistant
     #[allow(dead_code)]
@@ -56,7 +61,38 @@ pub struct AppState {
     assistant: OrderAssistant,
 }
 
+async fn validate_api_key<B>(
+    State(state): State<AppState>,
+    req: Request<B>,
+    next: Next<B>,
+) -> Result<Response, StatusCode> {
+    let auth_header = req
+        .headers()
+        .get(AUTHORIZATION)
+        .and_then(|header| header.to_str().ok())
+        .ok_or(StatusCode::UNAUTHORIZED)?;
+
+    if !auth_header.starts_with("Bearer ") {
+        return Err(StatusCode::UNAUTHORIZED);
+    }
+
+    let token = auth_header.trim_start_matches("Bearer ").trim();
+
+    // TODO(siyer): Use hashes for the api keys instead of matching directly
+    if state.api_keys.contains(token) {
+        Ok(next.run(req).await)
+    } else {
+        Err(StatusCode::UNAUTHORIZED)
+    }
+}
+
 pub async fn create_router() -> Router {
+    let api_keys: HashSet<String> = std::env::var("API_KEYS")
+        .expect("API_KEYS environment variable is required")
+        .split(',')
+        .map(|s| s.trim().to_string())
+        .collect();
+
     let redis_url = std::env::var("REDIS_URL").unwrap_or_else(|_| "redis://127.0.0.1/".to_string());
     let redis_client = RedisClient::open(redis_url).expect("Failed to connect to Redis");
     let store = OrderStore::new(redis_client);
@@ -73,6 +109,7 @@ pub async fn create_router() -> Router {
     //     .expect("Failed to initialize assistant");
 
     let state = AppState {
+        api_keys,
         store,
         assistant,
         menu,
@@ -82,6 +119,10 @@ pub async fn create_router() -> Router {
         .route("/start", post(start_order))
         .route("/chat", post(send_chat_message))
         .route("/order/:order_id", get(get_order))
+        .layer(middleware::from_fn_with_state(
+            state.clone(),
+            validate_api_key,
+        ))
         .with_state(state)
 }
 

@@ -33,7 +33,13 @@ pub struct ChatRequest {
     pub location: String,
 }
 
-type ChatResponse = Order;
+#[derive(Debug, Serialize, Deserialize)]
+pub struct ChatResponse {
+    #[serde(rename = "orderId")]
+    pub order_id: String,
+    pub order: Vec<OrderItem>,
+    pub messages: Vec<ChatMessage>,
+}
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct GetOrderResponse {
@@ -44,7 +50,8 @@ pub struct GetOrderResponse {
 #[derive(Clone)]
 pub struct AppState {
     store: OrderStore,
-    #[allow(dead_code)] // NOTE(dev): This enables request level control over the assistant
+    // NOTE(dev): This enables request level control over the assistant
+    #[allow(dead_code)]
     menu: Menu,
     assistant: OrderAssistant,
 }
@@ -59,10 +66,11 @@ pub async fn create_router() -> Router {
     let openai_config = OpenAIConfig::new()
         .with_api_key(std::env::var("OPENAI_API_KEY").expect("OPENAI_API_KEY is required"));
     let mut assistant = OrderAssistant::new(OpenAIClient::with_config(openai_config));
-    assistant
-        .initialize_assistant(&menu)
-        .await
-        .expect("Failed to initialize assistant");
+    // TODO(siyer): Re-enable when I have perms to create assistants
+    // assistant
+    //     .initialize_assistant(&menu)
+    //     .await
+    //     .expect("Failed to initialize assistant");
 
     let state = AppState {
         store,
@@ -94,8 +102,12 @@ async fn send_chat_message(
     State(state): State<AppState>,
     Json(request): Json<ChatRequest>,
 ) -> AppResult<Json<ChatResponse>> {
-    let response = handle_chat_message(&state.store, &state.assistant, &request).await?;
-    Ok(Json(response))
+    let res = handle_chat_message(&state.store, &state.assistant, &request).await?;
+    Ok(Json(ChatResponse {
+        order_id: request.order_id,
+        order: res.order,
+        messages: res.messages,
+    }))
 }
 
 async fn get_order(

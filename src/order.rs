@@ -9,6 +9,9 @@ pub struct Order {
     pub order_id: String,
     pub order: Vec<OrderItem>,
     pub messages: Vec<ChatMessage>,
+    // NOTE(dev): Renaming this field for consistency, not because it goes through the API
+    #[serde(rename = "threadId")]
+    pub thread_id: Option<String>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
@@ -29,6 +32,7 @@ impl Order {
             order_id,
             order: Vec::new(),
             messages: Vec::new(),
+            thread_id: None,
         }
     }
 

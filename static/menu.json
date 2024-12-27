@@ -6347,26 +6347,4 @@
 		"price": 0,
 		"options": {}
 	}
-]{
-  "items": [
-    {
-      "itemName": "Burger",
-      "optionKeys": ["Size", "Cheese", "Doneness"],
-      "optionValues": [
-        ["Regular", "Large"],
-        ["American", "Swiss", "Cheddar"],
-        ["Medium Rare", "Medium", "Well Done"]
-      ],
-      "price": 12.99
-    },
-    {
-      "itemName": "Pizza",
-      "optionKeys": ["Size", "Toppings"],
-      "optionValues": [
-        ["Small", "Medium", "Large"],
-        ["Pepperoni", "Mushrooms", "Onions", "Olives"]
-      ],
-      "price": 15.99
-    }
-  ]
-}
+]

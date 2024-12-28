@@ -12,16 +12,16 @@ I want to test my service that I wrote. Usually I write the tests before I write
 There are some performance and prompting issues I would like to deep into
 
 - [ ] Performance
-  - [ ] Debug why Tool Calls are not being done in parallel. GPT should be parallelizing the tool calls it makes according [to docs](https://platform.openai.com/docs/assistants/tools/function-calling) but in practice it is not happening often. I think I need to write better prompting to make this happen
+  - [ ] **Debug why Tool Calls are not being done in parallel. GPT should be parallelizing the tool calls it makes according [to docs](https://platform.openai.com/docs/assistants/tools/function-calling) but in practice it is not happening often. I think I need to write better prompting to make this happen**
   - [ ] Check performance hit of the `TokioMutex` on the `assistant` object. I think this is low, but I would like to run a profile quickly
   - [ ] Run a quick overall profiler to make sure there are no bottlenecks in the system ([many options for rust](https://nnethercote.github.io/perf-book/profiling.html))
 - [ ] Prompting
-  - [ ] Use enums for the function output to make sure that I am getting the correctly formatted options/items
+  - [ ] **Use enums for the function output to make sure that I am getting the correctly formatted options/items**
   - [ ] Upload the menu as a file through the openai platform
   - [ ] Dive deep into whether my system prompt is configured correctly
   - [ ] Check whether my `validate_item` function is prompting correctly
   - [ ] Look into whether my function call descriptions are written correctly
-  - [ ] Investigate adding snippets of the menu as a function call or as part of the prompt to help GPT with recall
+  - [ ] **Investigate adding snippets of the menu as a function call or as part of the prompt to help GPT with recall**
     - [ ] Potentially could also be added as notes from the verifier
 
 ## P3

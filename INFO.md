@@ -34,7 +34,7 @@ flowchart TD
 Basically, I just use the Assistants API in the OpenAI platform to create the state machine-ish thing above. I had considered doing this all manually through function calls, but realized that the Assistants API would do everything I wanted to do an better. I organize the message history through threads (but maintain a cache locally to avoid unnecessary calls). GPT is able to decide for itself when it needs to look back at the source of truth through the `list` function, or what it needs to modify/add in order to complete the order. It is also able to do this iteratively against a verifier for each of the items. I think there are opportunities to improve the prompting in the verifier/checking completeness of all the aspects that can be verified.
 
 ## Iterative Processing
-This is example of one invocation of `/chat` where the gpt searches to find a vegetarian option in the menu.
+This is example of one gnarly invocation of `/chat` where the gpt searches to find a vegetarian/vegan option in the menu.
 ```
 app-1    |   2024-12-28T07:48:12.563327Z  INFO  Creating new run for thread thread_7gOKQWS3R6nczkEzzOwi8utW
 app-1    |   2024-12-28T07:48:25.502021Z  INFO  Run requires action. Thread ID: thread_7gOKQWS3R6nczkEzzOwi8utW, Run ID: run_SN2nUaeENuaPuvs56jeW03Qc, Order ID: cc33906e-3982-460a-8061-fc6640ba6bf6

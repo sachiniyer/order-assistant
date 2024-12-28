@@ -10,7 +10,8 @@ use std::sync::PoisonError;
 #[derive(Debug)]
 pub enum AppError {
     RedisError(RedisError),
-    JsonError(serde_json::Error),
+    JsonSerializationError(serde_json::Error),
+    PlainSerializationError(serde_plain::Error),
     OrderNotFound(String),
     InvalidInput(String),
     IoError(io::Error),
@@ -26,7 +27,13 @@ impl From<RedisError> for AppError {
 
 impl From<serde_json::Error> for AppError {
     fn from(err: serde_json::Error) -> Self {
-        AppError::JsonError(err)
+        AppError::JsonSerializationError(err)
+    }
+}
+
+impl From<serde_plain::Error> for AppError {
+    fn from(err: serde_plain::Error) -> Self {
+        AppError::PlainSerializationError(err)
     }
 }
 
@@ -51,7 +58,12 @@ impl IntoResponse for AppError {
     fn into_response(self) -> Response {
         let (status, message) = match self {
             AppError::RedisError(e) => (StatusCode::INTERNAL_SERVER_ERROR, e.to_string()),
-            AppError::JsonError(e) => (StatusCode::INTERNAL_SERVER_ERROR, e.to_string()),
+            AppError::JsonSerializationError(e) => {
+                (StatusCode::INTERNAL_SERVER_ERROR, e.to_string())
+            }
+            AppError::PlainSerializationError(e) => {
+                (StatusCode::INTERNAL_SERVER_ERROR, e.to_string())
+            }
             AppError::OrderNotFound(id) => (
                 StatusCode::NOT_FOUND,
                 format!("Order with id {} not found", id),

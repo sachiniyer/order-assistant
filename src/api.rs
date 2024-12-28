@@ -19,7 +19,7 @@ use crate::chat::{handle_chat_message, ChatMessage};
 use crate::error::AppResult;
 use crate::functions::OrderAssistant;
 use crate::menu::Menu;
-use crate::order::{Order, OrderItem, OrderStore};
+use crate::order::{Order, OrderItemResponse, OrderStore};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct StartOrderRequest {
@@ -44,16 +44,25 @@ pub struct ChatRequest {
 pub struct ChatResponse {
     #[serde(rename = "orderId")]
     pub order_id: String,
-    pub order: Vec<OrderItem>,
+    pub order: Vec<OrderItemResponse>,
     pub messages: Vec<ChatMessage>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct GetOrderResponse {
-    order: Vec<OrderItem>,
+    order: Vec<OrderItemResponse>,
     messages: Vec<ChatMessage>,
 }
 
+/// Validates the API key from the request headers against the allowed API keys in the application state.
+///
+/// # Arguments
+/// * `state` - Application state containing allowed API keys
+/// * `req` - The incoming HTTP request
+/// * `next` - The next middleware function to call if validation succeeds
+///
+/// # Returns
+/// * `Result<Response, StatusCode>` - Success response if validated, UNAUTHORIZED status if invalid
 async fn validate_api_key<B>(
     State(state): State<AppState>,
     req: Request<B>,
@@ -82,12 +91,14 @@ async fn validate_api_key<B>(
 pub struct AppState {
     api_keys: Arc<HashSet<String>>,
     store: Arc<OrderStore>,
-    // NOTE(dev): This enables giving request level menu info to the assistant
-    #[allow(dead_code)]
     menu: Arc<Menu>,
     assistant: Arc<TokioMutex<OrderAssistant>>,
 }
 
+/// Creates and configures the application router with all routes and middleware.
+///
+/// # Returns
+/// * `Router` - Configured router with all routes and middleware attached
 pub async fn create_router() -> Router {
     let api_keys: HashSet<String> = std::env::var("API_KEYS")
         .expect("API_KEYS environment variable is required")
@@ -133,6 +144,14 @@ pub async fn create_router() -> Router {
         .with_state(state)
 }
 
+/// Initializes a new order and returns the order ID.
+///
+/// # Arguments
+/// * `state` - Application state containing the order store
+/// * `request` - The start order request containing location
+///
+/// # Returns
+/// * `AppResult<Json<StartOrderResponse>>` - JSON response containing the new order ID
 async fn start_order(
     State(state): State<AppState>,
     Json(_request): Json<StartOrderRequest>,
@@ -146,21 +165,40 @@ async fn start_order(
     Ok(Json(StartOrderResponse { order_id }))
 }
 
+/// Processes a chat message for an order and returns the updated order state.
+///
+/// # Arguments
+/// * `state` - Application state containing assistant and stores
+/// * `request` - The chat request containing order ID and message
+///
+/// # Returns
+/// * `AppResult<Json<ChatResponse>>` - JSON response with updated order and chat messages
 async fn send_chat_message(
     State(state): State<AppState>,
     Json(request): Json<ChatRequest>,
 ) -> AppResult<Json<ChatResponse>> {
     let assistant_lock = state.assistant.lock().await;
 
-    let res = handle_chat_message(&state.store, &assistant_lock, &request).await?;
-
+    let res = handle_chat_message(&state.store, &state.menu, &assistant_lock, &request).await?;
     Ok(Json(ChatResponse {
         order_id: request.order_id,
-        order: res.order,
+        order: res
+            .order
+            .iter()
+            .map(|item| (*item).clone().into())
+            .collect(),
         messages: res.messages,
     }))
 }
 
+/// Retrieves an existing order by ID.
+///
+/// # Arguments
+/// * `state` - Application state containing the order store
+/// * `order_id` - The ID of the order to retrieve
+///
+/// # Returns
+/// * `AppResult<Json<GetOrderResponse>>` - JSON response containing the order details
 async fn get_order(
     State(state): State<AppState>,
     Path(order_id): Path<String>,
@@ -169,7 +207,11 @@ async fn get_order(
     let order = Order::get(&mut conn, &order_id)?;
 
     Ok(Json(GetOrderResponse {
-        order: order.order,
+        order: order
+            .order
+            .iter()
+            .map(|item| (*item).clone().into())
+            .collect(),
         messages: order.messages,
     }))
 }

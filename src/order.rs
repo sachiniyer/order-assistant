@@ -1,7 +1,9 @@
-use crate::chat::ChatMessage;
-use crate::error::{AppError, AppResult};
 use redis::{Client, Commands, Connection};
 use serde::{Deserialize, Serialize};
+use std::fmt;
+
+use crate::chat::ChatMessage;
+use crate::error::{AppError, AppResult};
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Order {
@@ -10,8 +12,16 @@ pub struct Order {
     pub order: Vec<OrderItem>,
     pub messages: Vec<ChatMessage>,
     // NOTE(dev): Renaming this field for consistency, not because it goes through the API
-    #[serde(rename = "threadId")]
     pub thread_id: Option<String>,
+}
+
+impl fmt::Display for Order {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match serde_json::to_string_pretty(self) {
+            Ok(json) => write!(f, "{}", json),
+            Err(_) => write!(f, "Order"),
+        }
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
@@ -24,6 +34,15 @@ pub struct OrderItem {
     #[serde(rename = "optionValues")]
     pub option_values: Vec<Vec<String>>,
     pub price: f64,
+}
+
+impl fmt::Display for OrderItem {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match serde_json::to_string_pretty(self) {
+            Ok(json) => write!(f, "{}", json),
+            Err(_) => write!(f, "OrderItem"),
+        }
+    }
 }
 
 impl Order {

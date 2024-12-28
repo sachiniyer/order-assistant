@@ -1,4 +1,5 @@
 use async_openai::{config::OpenAIConfig, Client as OpenAIClient};
+#[allow(unused_imports)]
 use axum::{
     extract::{Path, State},
     http::{header::AUTHORIZATION, Request, StatusCode},
@@ -10,6 +11,8 @@ use axum::{
 use redis::Client as RedisClient;
 use serde::{Deserialize, Serialize};
 use std::collections::HashSet;
+use std::sync::Arc;
+use tokio::sync::Mutex as TokioMutex;
 use uuid::Uuid;
 
 use crate::chat::{handle_chat_message, ChatMessage};
@@ -51,16 +54,6 @@ pub struct GetOrderResponse {
     messages: Vec<ChatMessage>,
 }
 
-#[derive(Clone)]
-pub struct AppState {
-    api_keys: HashSet<String>,
-    store: OrderStore,
-    // NOTE(dev): This enables request level control over the assistant
-    #[allow(dead_code)]
-    menu: Menu,
-    assistant: OrderAssistant,
-}
-
 async fn validate_api_key<B>(
     State(state): State<AppState>,
     req: Request<B>,
@@ -68,7 +61,7 @@ async fn validate_api_key<B>(
 ) -> Result<Response, StatusCode> {
     let auth_header = req
         .headers()
-        .get(AUTHORIZATION)
+        .get("x-api-key")
         .and_then(|header| header.to_str().ok())
         .ok_or(StatusCode::UNAUTHORIZED)?;
 
@@ -78,12 +71,21 @@ async fn validate_api_key<B>(
 
     let token = auth_header.trim_start_matches("Bearer ").trim();
 
-    // TODO(siyer): Use hashes for the api keys instead of matching directly
     if state.api_keys.contains(token) {
         Ok(next.run(req).await)
     } else {
         Err(StatusCode::UNAUTHORIZED)
     }
+}
+
+#[derive(Clone)]
+pub struct AppState {
+    api_keys: Arc<HashSet<String>>,
+    store: Arc<OrderStore>,
+    // NOTE(dev): This enables giving request level menu info to the assistant
+    #[allow(dead_code)]
+    menu: Arc<Menu>,
+    assistant: Arc<TokioMutex<OrderAssistant>>,
 }
 
 pub async fn create_router() -> Router {
@@ -101,18 +103,23 @@ pub async fn create_router() -> Router {
 
     let openai_config = OpenAIConfig::new()
         .with_api_key(std::env::var("OPENAI_API_KEY").expect("OPENAI_API_KEY is required"));
-    let mut assistant = OrderAssistant::new(OpenAIClient::with_config(openai_config));
-    // TODO(siyer): Re-enable when I have perms to create assistants
-    // assistant
-    //     .initialize_assistant(&menu)
-    //     .await
-    //     .expect("Failed to initialize assistant");
+    let openai_client = OpenAIClient::with_config(openai_config);
+    let assistant = OrderAssistant::new(openai_client);
+
+    let assistant = Arc::new(TokioMutex::new(assistant));
+    {
+        let mut locked_assistant = assistant.lock().await;
+        locked_assistant
+            .initialize_assistant(&menu)
+            .await
+            .expect("Failed to initialize assistant");
+    }
 
     let state = AppState {
-        api_keys,
-        store,
+        api_keys: Arc::new(api_keys),
+        store: Arc::new(store),
+        menu: Arc::new(menu),
         assistant,
-        menu,
     };
 
     Router::new()
@@ -143,7 +150,10 @@ async fn send_chat_message(
     State(state): State<AppState>,
     Json(request): Json<ChatRequest>,
 ) -> AppResult<Json<ChatResponse>> {
-    let res = handle_chat_message(&state.store, &state.assistant, &request).await?;
+    let assistant_lock = state.assistant.lock().await;
+
+    let res = handle_chat_message(&state.store, &assistant_lock, &request).await?;
+
     Ok(Json(ChatResponse {
         order_id: request.order_id,
         order: res.order,

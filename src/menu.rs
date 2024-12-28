@@ -39,6 +39,13 @@ pub struct Menu {
     pub items: Vec<MenuItem>,
 }
 
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub enum ItemStatus {
+    Incomplete,
+    Complete,
+    Invalid,
+}
+
 impl Menu {
     pub fn new() -> AppResult<Self> {
         let content = fs::read_to_string(
@@ -48,8 +55,10 @@ impl Menu {
         Ok(Menu { items })
     }
 
-    pub fn validate_item(&self, item: &OrderItem) -> AppResult<bool> {
+    pub fn validate_item(&self, item: &OrderItem) -> AppResult<ItemStatus> {
         // TODO(siyer): Could validate the price here as well, but that is skipped for now
+        //              Additionally, could provide more hints on why the item is invalid.
+        //              This function just provides hints to GPT on what is missing/needs to be changed
         let menu_item = self.items.iter().find(|i| i.item_name == item.item_name);
         // NOTE(dev): Validate that the options exist on the item, and that the values are valid
         for (option_key, option_values) in
@@ -57,18 +66,18 @@ impl Menu {
         {
             let option = menu_item.unwrap().options.get(option_key);
             if option.is_none() {
-                return Ok(false);
+                return Ok(ItemStatus::Invalid);
             }
             let option = option.unwrap();
             for value in option_values {
                 if !option.choices.contains_key(value) {
-                    return Ok(false);
+                    return Ok(ItemStatus::Invalid);
                 }
             }
             if option_values.len() < option.minimum as usize
                 || option_values.len() > option.maximum as usize
             {
-                return Ok(false);
+                return Ok(ItemStatus::Incomplete);
             }
         }
 
@@ -77,7 +86,7 @@ impl Menu {
             match &option_config.required {
                 RequirementConfig::Simple(true) => {
                     if !item.option_keys.contains(&option_name) {
-                        return Ok(false);
+                        return Ok(ItemStatus::Incomplete);
                     }
                 }
                 RequirementConfig::Dependent { option, value } => {
@@ -85,17 +94,17 @@ impl Menu {
                     match item_index {
                         Some(index) => {
                             if !item.option_values.get(index).unwrap().contains(&value) {
-                                return Ok(false);
+                                return Ok(ItemStatus::Incomplete);
                             }
                         }
                         None => {
-                            return Ok(false);
+                            return Ok(ItemStatus::Incomplete);
                         }
                     }
                 }
                 _ => {}
             }
         }
-        Ok(true)
+        Ok(ItemStatus::Complete)
     }
 }

@@ -5,6 +5,7 @@ use axum::{
 };
 use redis::RedisError;
 use std::io;
+use std::sync::PoisonError;
 
 #[derive(Debug)]
 pub enum AppError {
@@ -13,6 +14,7 @@ pub enum AppError {
     OrderNotFound(String),
     InvalidInput(String),
     IoError(io::Error),
+    LockError,
     OpenAIError(OpenAIError),
 }
 
@@ -40,6 +42,11 @@ impl From<OpenAIError> for AppError {
     }
 }
 
+impl<T> From<PoisonError<T>> for AppError {
+    fn from(_: PoisonError<T>) -> Self {
+        AppError::LockError
+    }
+}
 impl IntoResponse for AppError {
     fn into_response(self) -> Response {
         let (status, message) = match self {
@@ -52,6 +59,7 @@ impl IntoResponse for AppError {
             AppError::InvalidInput(msg) => (StatusCode::BAD_REQUEST, msg),
             AppError::IoError(e) => (StatusCode::INTERNAL_SERVER_ERROR, e.to_string()),
             AppError::OpenAIError(e) => (StatusCode::INTERNAL_SERVER_ERROR, e.to_string()),
+            AppError::LockError => (StatusCode::INTERNAL_SERVER_ERROR, "Lock error".to_string()),
         };
 
         (status, message).into_response()

@@ -277,8 +277,8 @@ impl OrderAssistant {
         let mut run = self
             .client
             .threads()
-            .runs(&thread_id)
-            .retrieve(&run_id)
+            .runs(thread_id)
+            .retrieve(run_id)
             .await?;
         loop {
             match run.status {
@@ -376,7 +376,7 @@ impl OrderAssistant {
     /// * `AppResult<&mut Order>` - The updated order after processing
     pub async fn handle_message<'a>(
         &self,
-        message: &String,
+        message: &str,
         location: &String,
         order: &'a mut Order,
         menu: &Menu,
@@ -417,7 +417,7 @@ impl OrderAssistant {
         debug!("Adding user message to order history");
         order.messages.push(ChatMessage {
             role: ChatRole::User.to_string(),
-            content: message.clone(),
+            content: message.to_owned(),
         });
 
         debug!(
@@ -430,7 +430,7 @@ impl OrderAssistant {
             .messages(&thread_id)
             .create(CreateMessageRequest {
                 role: MessageRole::User,
-                content: message.clone().into(),
+                content: message.to_owned().into(),
                 ..Default::default()
             })
             .await?;

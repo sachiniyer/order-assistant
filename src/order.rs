@@ -72,14 +72,14 @@ pub struct OrderItemResponse {
     pub price: f64,
 }
 
-impl Into<OrderItemResponse> for OrderItem {
-    fn into(self) -> OrderItemResponse {
+impl From<OrderItem> for OrderItemResponse {
+    fn from(val: OrderItem) -> Self {
         OrderItemResponse {
-            id: self.id,
-            item_name: self.item_name,
-            option_keys: self.option_keys,
-            option_values: self.option_values,
-            price: self.price,
+            id: val.id,
+            item_name: val.item_name,
+            option_keys: val.option_keys,
+            option_values: val.option_values,
+            price: val.price,
         }
     }
 }
@@ -119,7 +119,11 @@ impl Order {
     /// # Returns
     /// * `AppResult<()>` - Success if saved
     pub async fn save(&self, conn: &mut Connection) -> AppResult<()> {
-        debug!("Saving order {} with {} items", self.order_id, self.order.len());
+        debug!(
+            "Saving order {} with {} items",
+            self.order_id,
+            self.order.len()
+        );
         let order_json = serde_json::to_string(&self)?;
         conn.set::<_, _, ()>(&self.order_id, order_json)?;
         debug!("Order {} saved successfully", self.order_id);
@@ -140,7 +144,11 @@ impl Order {
         match order_json {
             Some(json) => {
                 let order: Self = serde_json::from_str(&json)?;
-                debug!("Retrieved order {} with {} items", order_id, order.order.len());
+                debug!(
+                    "Retrieved order {} with {} items",
+                    order_id,
+                    order.order.len()
+                );
                 Ok(order)
             }
             None => {

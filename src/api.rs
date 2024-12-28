@@ -21,37 +21,52 @@ use crate::functions::OrderAssistant;
 use crate::menu::Menu;
 use crate::order::{Order, OrderItemResponse, OrderStore};
 
+/// Request payload for starting a new order
 #[derive(Debug, Serialize, Deserialize)]
 pub struct StartOrderRequest {
+    /// The location of the restaurant
     pub location: String,
 }
 
+/// Response payload for a new order creation
 #[derive(Debug, Serialize, Deserialize)]
 pub struct StartOrderResponse {
+    /// The unique identifier for the created order
     #[serde(rename = "orderId")]
     pub order_id: String,
 }
 
+/// Request payload for sending a chat message
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ChatRequest {
+    /// The ID of the order this chat message belongs to
     #[serde(rename = "orderId")]
     pub order_id: String,
+    /// The user's input message
     pub input: String,
+    /// The location of the restaurant
     pub location: String,
 }
 
+/// Response payload for a chat message
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ChatResponse {
+    /// The ID of the order this chat response belongs to
     #[serde(rename = "orderId")]
     pub order_id: String,
+    /// The current state of the order items
     pub order: Vec<OrderItemResponse>,
+    /// The chat message history
     pub messages: Vec<ChatMessage>,
 }
 
+/// Response payload for retrieving an order
 #[derive(Debug, Serialize, Deserialize)]
 pub struct GetOrderResponse {
-    order: Vec<OrderItemResponse>,
-    messages: Vec<ChatMessage>,
+    /// The current state of the order items
+    pub order: Vec<OrderItemResponse>,
+    /// The chat message history
+    pub messages: Vec<ChatMessage>,
 }
 
 /// Validates the API key from the request headers against the allowed API keys in the application state.
@@ -87,12 +102,17 @@ async fn validate_api_key<B>(
     }
 }
 
+/// Application state shared across all requests
 #[derive(Clone)]
 pub struct AppState {
-    api_keys: Arc<HashSet<String>>,
-    store: Arc<OrderStore>,
-    menu: Arc<Menu>,
-    assistant: Arc<TokioMutex<OrderAssistant>>,
+    /// Set of valid API keys
+    pub api_keys: Arc<HashSet<String>>,
+    /// Storage interface for orders
+    pub store: Arc<OrderStore>,
+    /// Restaurant menu configuration
+    pub menu: Arc<Menu>,
+    /// AI assistant for order management
+    pub assistant: Arc<TokioMutex<OrderAssistant>>,
 }
 
 /// Creates and configures the application router with all routes and middleware.

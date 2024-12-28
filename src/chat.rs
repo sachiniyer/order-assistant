@@ -12,15 +12,21 @@ use crate::functions::{
 use crate::menu::Menu;
 use crate::order::{Order, OrderItem, OrderStore};
 
+/// Represents a single message in the chat conversation
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct ChatMessage {
+    /// The role of who sent the message (user/assistant)
     pub role: String,
+    /// The content of the message
     pub content: String,
 }
 
+/// Represents the possible roles in a chat conversation
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub enum ChatRole {
+    /// Message from the user
     User,
+    /// Message from the AI assistant
     Assistant,
 }
 

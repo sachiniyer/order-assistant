@@ -4,45 +4,66 @@ use std::fs;
 use crate::error::AppResult;
 use crate::order::OrderItem;
 
+/// Represents a single item on the menu
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct MenuItem {
+    /// Name of the menu item
     #[serde(rename = "itemName")]
     pub item_name: String,
+    /// Category/type of the item
     #[serde(rename = "itemType")]
     pub item_type: String,
+    /// Description of the item
     pub description: String,
+    /// Available customization options
     pub options: std::collections::HashMap<String, OptionConfig>,
 }
 
+/// Configuration for a customization option
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct OptionConfig {
+    /// Whether and how the option is required
     pub required: RequirementConfig,
+    /// Minimum number of choices required
     pub minimum: i32,
+    /// Maximum number of choices allowed
     pub maximum: i32,
+    /// Available choices for this option
     pub choices: std::collections::HashMap<String, Choice>,
 }
 
+/// Requirement configuration for an option
 #[derive(Debug, Serialize, Deserialize, Clone)]
 #[serde(untagged)]
 pub enum RequirementConfig {
+    /// Simple boolean requirement
     Simple(bool),
+    /// Requirement dependent on another option
     Dependent { option: String, value: String },
 }
 
+/// Price configuration for an option choice
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Choice {
+    /// Additional price for this choice
     pub price: f64,
 }
 
+/// Complete menu configuration
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Menu {
+    /// List of available menu items
     pub items: Vec<MenuItem>,
 }
 
+/// Status of an item's validation against menu requirements
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum ItemStatus {
+    /// Item is missing required options
     Incomplete(String),
+    /// Item meets all requirements
     Complete(String),
+    /// Item has invalid options
     Invalid(String),
 }
 

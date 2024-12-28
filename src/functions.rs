@@ -19,14 +19,20 @@ use crate::order::Order;
 // TODO(siyer): Build a macro to do this whole process for each of the functions
 //              Something similar to https://github.com/frankfralick/openai-func-enums
 
+/// Available function names for the AI assistant
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub enum FunctionName {
+    /// Function to add an item to the order
+    ///
     #[serde(rename = "add_item")]
     AddItem,
+    /// Function to remove an item from the order
     #[serde(rename = "remove_item")]
     RemoveItem,
+    /// Function to modify an existing item
     #[serde(rename = "modify_item")]
     ModifyItem,
+    /// Function to list items in the order
     #[serde(rename = "list_items")]
     ListItems,
 }
@@ -43,52 +49,73 @@ impl Display for FunctionName {
 }
 
 // NOTE(dev): Extra verbosity in structs is to enable strict deserialization based on function name
+/// Arguments for adding an item to the order
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AddItemArgs {
+    /// Name of the item to add
     #[serde(rename = "itemName")]
     pub item_name: String,
+    /// Optional customization keys
     #[serde(rename = "optionKeys")]
     pub option_keys: Option<Vec<String>>,
+    /// Values for the customization options
     #[serde(rename = "optionValues")]
     pub option_values: Option<Vec<Vec<String>>>,
     // TODO(siyer): Could just calculate price using menu.rs, but trusting GPT for now
+    /// Price of the item with options
     pub price: f64,
 }
 
+/// Arguments for removing an item from the order
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RemoveItemArgs {
+    /// ID of the order item to remove
     #[serde(rename = "orderId")]
     pub order_id: String,
 }
 
+/// Arguments for modifying an existing item
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ModifyItemArgs {
+    /// ID of the order item to modify
     #[serde(rename = "orderId")]
     pub order_id: String,
+    /// New name for the item
     #[serde(rename = "itemName")]
     pub item_name: String,
+    /// New option keys
     #[serde(rename = "optionKeys")]
     pub option_keys: Option<Vec<String>>,
+    /// New option values
     #[serde(rename = "optionValues")]
     pub option_values: Option<Vec<Vec<String>>>,
     // TODO(siyer): Could just calculate price using menu.rs, but trusting GPT for now
+    /// Updated price
     pub price: f64,
 }
 
+/// Arguments for listing items in the order
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ListItemsArgs {
+    /// Optional limit on number of items to return
     pub limit: Option<usize>,
 }
 
+/// Possible function arguments for the AI assistant
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum FunctionArgs {
+    /// Arguments for adding an item
     AddItem(AddItemArgs),
+    /// Arguments for removing an item
     RemoveItem(RemoveItemArgs),
+    /// Arguments for modifying an item
     ModifyItem(ModifyItemArgs),
+    /// Arguments for listing items
     ListItems(ListItemsArgs),
 }
 
+/// AI assistant for managing orders
 #[derive(Clone)]
 pub struct OrderAssistant {
     client: Client<OpenAIConfig>,

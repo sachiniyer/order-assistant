@@ -222,6 +222,7 @@ impl Menu {
                         option_name, option, value, item.item_name, item.id
                     );
                     let item_option_index = item.option_keys.iter().position(|x| x == option_name);
+                    #[allow(clippy::single_match)]
                     match item_option_index {
                         None => {
                             let dependent_option_index =

@@ -13,6 +13,7 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashSet;
 use std::sync::Arc;
 use tokio::sync::Mutex as TokioMutex;
+use tracing::{debug, info};
 use uuid::Uuid;
 
 use crate::chat::{handle_chat_message, ChatMessage};
@@ -83,6 +84,7 @@ async fn validate_api_key<B>(
     req: Request<B>,
     next: Next<B>,
 ) -> Result<Response, StatusCode> {
+    debug!("Validating API key from request headers");
     let auth_header = req
         .headers()
         .get("x-api-key")
@@ -90,14 +92,17 @@ async fn validate_api_key<B>(
         .ok_or(StatusCode::UNAUTHORIZED)?;
 
     if !auth_header.starts_with("Bearer ") {
+        info!("Invalid API key format - missing Bearer prefix");
         return Err(StatusCode::UNAUTHORIZED);
     }
 
     let token = auth_header.trim_start_matches("Bearer ").trim();
 
     if state.api_keys.contains(token) {
+        debug!("API key validated successfully");
         Ok(next.run(req).await)
     } else {
+        info!("Invalid API key provided");
         Err(StatusCode::UNAUTHORIZED)
     }
 }
@@ -120,18 +125,23 @@ pub struct AppState {
 /// # Returns
 /// * `Router` - Configured router with all routes and middleware attached
 pub async fn create_router() -> Router {
+    info!("Initializing application router");
     let api_keys: HashSet<String> = std::env::var("API_KEYS")
         .expect("API_KEYS environment variable is required")
         .split(',')
         .map(|s| s.trim().to_string())
         .collect();
+    debug!("Loaded {} API keys", api_keys.len());
 
     let redis_url = std::env::var("REDIS_URL").unwrap_or_else(|_| "redis://127.0.0.1/".to_string());
+    debug!("Connecting to Redis at {}", redis_url);
     let redis_client = RedisClient::open(redis_url).expect("Failed to connect to Redis");
     let store = OrderStore::new(redis_client);
 
+    info!("Loading menu configuration");
     let menu = Menu::new().expect("Failed to load menu");
 
+    debug!("Initializing OpenAI client");
     let openai_config = OpenAIConfig::new()
         .with_api_key(std::env::var("OPENAI_API_KEY").expect("OPENAI_API_KEY is required"));
     let openai_client = OpenAIClient::with_config(openai_config);
@@ -139,6 +149,7 @@ pub async fn create_router() -> Router {
 
     let assistant = Arc::new(TokioMutex::new(assistant));
     {
+        info!("Initializing AI assistant");
         let mut locked_assistant = assistant.lock().await;
         locked_assistant
             .initialize_assistant(&menu)
@@ -174,17 +185,19 @@ pub async fn create_router() -> Router {
 /// * `AppResult<Json<StartOrderResponse>>` - JSON response containing the new order ID
 async fn start_order(
     State(state): State<AppState>,
-    Json(_request): Json<StartOrderRequest>,
+    Json(request): Json<StartOrderRequest>,
 ) -> AppResult<Json<StartOrderResponse>> {
+    info!("Starting new order for location: {}", request.location);
     let order_id = Uuid::new_v4().to_string();
-    let mut conn = state.store.get_connection()?;
+    debug!("Generated order ID: {}", order_id);
 
+    let mut conn = state.store.get_connection()?;
     let order = Order::new(order_id.clone());
     order.save(&mut conn).await?;
 
+    info!("Created new order: {}", order_id);
     Ok(Json(StartOrderResponse { order_id }))
 }
-
 /// Processes a chat message for an order and returns the updated order state.
 ///
 /// # Arguments
@@ -197,9 +210,16 @@ async fn send_chat_message(
     State(state): State<AppState>,
     Json(request): Json<ChatRequest>,
 ) -> AppResult<Json<ChatResponse>> {
-    let assistant_lock = state.assistant.lock().await;
+    info!("Processing chat message for order: {}", request.order_id);
+    debug!("Chat message: {}", request.input);
 
+    let assistant_lock = state.assistant.lock().await;
     let res = handle_chat_message(&state.store, &state.menu, &assistant_lock, &request).await?;
+
+    debug!(
+        "Chat response generated with {} messages",
+        res.messages.len()
+    );
     Ok(Json(ChatResponse {
         order_id: request.order_id,
         order: res
@@ -223,9 +243,11 @@ async fn get_order(
     State(state): State<AppState>,
     Path(order_id): Path<String>,
 ) -> AppResult<Json<GetOrderResponse>> {
+    info!("Retrieving order: {}", order_id);
     let mut conn = state.store.get_connection()?;
     let order = Order::get(&mut conn, &order_id)?;
 
+    debug!("Retrieved order with {} items", order.order.len());
     Ok(Json(GetOrderResponse {
         order: order
             .order

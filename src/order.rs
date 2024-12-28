@@ -1,6 +1,7 @@
 use redis::{Client, Commands, Connection};
 use serde::{Deserialize, Serialize};
 use std::fmt;
+use tracing::{debug, info};
 
 use crate::chat::ChatMessage;
 use crate::error::{AppError, AppResult};
@@ -101,6 +102,7 @@ impl Order {
     /// # Returns
     /// * `Self` - A new Order instance
     pub fn new(order_id: String) -> Self {
+        debug!("Creating new order with ID: {}", order_id);
         Self {
             order_id,
             order: Vec::new(),
@@ -117,9 +119,10 @@ impl Order {
     /// # Returns
     /// * `AppResult<()>` - Success if saved
     pub async fn save(&self, conn: &mut Connection) -> AppResult<()> {
+        debug!("Saving order {} with {} items", self.order_id, self.order.len());
         let order_json = serde_json::to_string(&self)?;
-        // NOTE(dev): weird typing because of https://github.com/rust-lang/rust/issues/123748
         conn.set::<_, _, ()>(&self.order_id, order_json)?;
+        debug!("Order {} saved successfully", self.order_id);
         Ok(())
     }
 
@@ -132,10 +135,18 @@ impl Order {
     /// # Returns
     /// * `AppResult<Self>` - The retrieved order or an error
     pub fn get(conn: &mut Connection, order_id: &str) -> AppResult<Self> {
+        debug!("Retrieving order: {}", order_id);
         let order_json: Option<String> = conn.get(order_id)?;
         match order_json {
-            Some(json) => Ok(serde_json::from_str(&json)?),
-            None => Err(AppError::OrderNotFound(order_id.to_string())),
+            Some(json) => {
+                let order: Self = serde_json::from_str(&json)?;
+                debug!("Retrieved order {} with {} items", order_id, order.order.len());
+                Ok(order)
+            }
+            None => {
+                info!("Order not found: {}", order_id);
+                Err(AppError::OrderNotFound(order_id.to_string()))
+            }
         }
     }
 }

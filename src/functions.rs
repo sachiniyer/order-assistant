@@ -10,6 +10,7 @@ use async_openai::{
 };
 use serde::{Deserialize, Serialize};
 use std::fmt::{self, Display};
+use tracing::{debug, error, info};
 
 use crate::chat::{handle_function_call, ChatMessage, ChatRole};
 use crate::error::{AppError, AppResult};
@@ -128,6 +129,7 @@ impl OrderAssistant {
     /// # Arguments
     /// * `client` - The OpenAI API client
     pub fn new(client: Client<OpenAIConfig>) -> Self {
+        debug!("Creating new OrderAssistant instance");
         Self {
             client,
             assistant: None,
@@ -142,6 +144,9 @@ impl OrderAssistant {
     /// # Returns
     /// * `AppResult<()>` - Success if initialization completes
     pub async fn initialize_assistant(&mut self, menu: &Menu) -> AppResult<()> {
+        info!("Initializing AI assistant with menu");
+        let model = std::env::var("OPENAI_MODEL").unwrap_or_else(|_| "gpt-4o".to_string());
+        debug!("Using OpenAI model: {}", model);
         let create_assistant_request = CreateAssistantRequestArgs::default()
         // TODO(siyer): Consider moving the menu to a file upload call instead of adding it to instructions
         .instructions(format!("You are an order management assistant.
@@ -151,7 +156,7 @@ impl OrderAssistant {
                                - Try to parallelize the tool calls as much as possible (e.g. submit all 5 additions at the same time)
                                - At the end of the conversation give the final price of the items in the cart
                                Use the follow menu: \n\n {}", serde_json::to_string_pretty(&menu)?))
-        .model("gpt-4o")
+        .model(model)
         .tools(vec![
             FunctionObject {
                 name: FunctionName::AddItem.to_string(),
@@ -218,12 +223,14 @@ impl OrderAssistant {
         ])
         .build()?;
 
+        debug!("Creating assistant with OpenAI API");
         let assistant = self
             .client
             .assistants()
             .create(create_assistant_request)
             .await?;
         self.assistant = Some(assistant.id);
+        info!("AI assistant initialized successfully");
 
         Ok(())
     }
@@ -235,24 +242,14 @@ impl OrderAssistant {
     ///
     /// # Returns
     /// * `AppResult<String>` - The ID of the created thread
-    async fn create_thread(&self, location: &String) -> AppResult<String> {
+    pub async fn create_thread(&self, location: &String) -> AppResult<String> {
+        debug!("Creating new thread for location: {}", location);
         let thread = self
             .client
             .threads()
             .create(CreateThreadRequest::default())
             .await?;
-
-        let _message = self
-            .client
-            .threads()
-            .messages(&thread.id)
-            .create(CreateMessageRequest {
-                role: MessageRole::Assistant,
-                content: format!("Welcome to {}, what can I get started for you", location).into(),
-                ..Default::default()
-            })
-            .await?;
-
+        debug!("Created thread with ID: {}", thread.id);
         Ok(thread.id)
     }
 
@@ -273,6 +270,10 @@ impl OrderAssistant {
         order: &mut Order,
         menu: &Menu,
     ) -> AppResult<RunObject> {
+        debug!(
+            "Starting to poll thread. Thread ID: {}, Run ID: {}, Order ID: {}",
+            thread_id, run_id, order.order_id
+        );
         let mut run = self
             .client
             .threads()
@@ -281,18 +282,30 @@ impl OrderAssistant {
             .await?;
         loop {
             match run.status {
-                RunStatus::Completed => return Ok(run),
+                RunStatus::Completed => {
+                    info!(
+                        "Run completed successfully. Thread ID: {}, Run ID: {}, Order ID: {}",
+                        thread_id, run_id, order.order_id
+                    );
+                    return Ok(run);
+                }
                 RunStatus::Queued | RunStatus::InProgress | RunStatus::Cancelling => {
+                    debug!("Run {} in state: {:?}", run_id, run.status);
                     run = self
                         .client
                         .threads()
-                        .runs(&thread_id)
-                        .retrieve(&run_id)
+                        .runs(thread_id)
+                        .retrieve(run_id)
                         .await?;
                 }
                 RunStatus::RequiresAction => {
+                    info!(
+                        "Run requires action. Thread ID: {}, Run ID: {}, Order ID: {}",
+                        thread_id, run_id, order.order_id
+                    );
                     let mut tool_outputs: Vec<ToolsOutputs> = vec![];
                     if run.required_action.is_none() {
+                        error!("Run {} requires action but no action specified", run.id);
                         return Err(AppError::OpenAIError(OpenAIError::InvalidArgument(
                             format!("{:?}", run),
                         )));
@@ -303,7 +316,12 @@ impl OrderAssistant {
                         .unwrap()
                         .submit_tool_outputs
                         .tool_calls;
+                    debug!("Processing {} tool calls", tool_calls.len());
                     for tool_call in tool_calls {
+                        debug!(
+                            "Executing tool call: {} (ID: {}) for Order ID: {}",
+                            tool_call.function.name, tool_call.id, order.order_id
+                        );
                         let tool_output =
                             handle_function_call(&tool_call.function, menu, order).await?;
                         tool_outputs.push(ToolsOutputs {
@@ -311,10 +329,11 @@ impl OrderAssistant {
                             output: Some(tool_output.to_string()),
                         });
                     }
+                    debug!("Submitting {} tool outputs", tool_outputs.len());
                     let _response = self
                         .client
                         .threads()
-                        .runs(&thread_id)
+                        .runs(thread_id)
                         .submit_tool_outputs(
                             run_id,
                             SubmitToolOutputsRunRequest {
@@ -326,17 +345,21 @@ impl OrderAssistant {
                     run = self
                         .client
                         .threads()
-                        .runs(&thread_id)
-                        .retrieve(&run_id)
+                        .runs(thread_id)
+                        .retrieve(run_id)
                         .await?;
                 }
                 _ => {
+                    error!(
+                        "Run in unexpected state: {:?}. Thread ID: {}, Run ID: {}, Order ID: {}",
+                        run.status, thread_id, run_id, order.order_id
+                    );
                     return Err(AppError::OpenAIError(OpenAIError::InvalidArgument(
                         format!("{:?}", run),
-                    )))
+                    )));
                 }
             }
-            // NOTE(dev): Wait for a second before re-querying the run status
+            debug!("Waiting before next poll for run {}", run_id);
             tokio::time::sleep(std::time::Duration::from_secs(1)).await;
         }
     }
@@ -358,24 +381,49 @@ impl OrderAssistant {
         order: &'a mut Order,
         menu: &Menu,
     ) -> AppResult<&'a mut Order> {
+        info!(
+            "Processing message for Order ID: {} at location: {}",
+            order.order_id, location
+        );
+
         let thread_id = match &order.thread_id {
-            Some(thread_id) => thread_id.clone(),
+            Some(thread_id) => {
+                debug!(
+                    "Using existing thread. Thread ID: {}, Order ID: {}",
+                    thread_id, order.order_id
+                );
+                thread_id.clone()
+            }
             None => {
+                info!(
+                    "Creating new thread for Order ID: {} at location: {}",
+                    order.order_id, location
+                );
                 let chat_message = ChatMessage {
                     role: ChatRole::Assistant.to_string(),
                     content: format!("Welcome to {}, what can I get started for you", location),
                 };
                 order.messages.push(chat_message);
                 let thread_id = self.create_thread(location).await?;
+                debug!(
+                    "Created new thread. Thread ID: {}, Order ID: {}",
+                    thread_id, order.order_id
+                );
                 order.thread_id = Some(thread_id.clone());
                 thread_id
             }
         };
+
+        debug!("Adding user message to order history");
         order.messages.push(ChatMessage {
             role: ChatRole::User.to_string(),
             content: message.clone(),
         });
 
+        debug!(
+            "Creating message in OpenAI thread. Thread ID: {}, Order ID: {}",
+            thread_id, order.order_id
+        );
         let _response = self
             .client
             .threads()
@@ -387,6 +435,7 @@ impl OrderAssistant {
             })
             .await?;
 
+        info!("Creating new run for thread {}", thread_id);
         let response = self
             .client
             .threads()
@@ -397,18 +446,23 @@ impl OrderAssistant {
                 ..Default::default()
             })
             .await?;
+        debug!("Created run: {}", response.id);
+
         let _run_result = self
             .poll_thread(&thread_id, &response.id, order, menu)
             .await?;
 
+        debug!("Retrieving latest message from thread");
         let messages = self
             .client
             .threads()
             .messages(&thread_id)
             .list(&[("limit", "1")])
             .await?;
-        if let Some(message) = messages.data.get(0) {
-            if let Some(MessageContent::Text(content)) = message.content.get(0) {
+
+        if let Some(message) = messages.data.first() {
+            if let Some(MessageContent::Text(content)) = message.content.first() {
+                debug!("Processing assistant response: {}", content.text.value);
                 let _response = self
                     .client
                     .threads()
@@ -425,9 +479,14 @@ impl OrderAssistant {
                     content: content.text.value.clone(),
                 };
                 order.messages.push(chat_message);
+                debug!("Added assistant response to order history");
             }
         }
 
+        info!(
+            "Message processing completed. Thread ID: {}, Order ID: {}",
+            thread_id, order.order_id
+        );
         Ok(order)
     }
 }

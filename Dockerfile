@@ -1,11 +1,11 @@
-FROM rust:1.70 as builder
+FROM rust:latest as builder
 
 WORKDIR /usr/src/app
 COPY . .
 
 RUN cargo build --release
 
-FROM debian:bullseye-slim
+FROM ubuntu
 
 WORKDIR /usr/local/bin
 COPY --from=builder /usr/src/app/target/release/customer_agent .

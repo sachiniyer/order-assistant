@@ -1,5 +1,6 @@
 use serde::{Deserialize, Serialize};
 use std::fs;
+use tracing::{debug, info};
 
 use crate::error::AppResult;
 use crate::order::OrderItem;
@@ -73,10 +74,13 @@ impl Menu {
     /// # Returns
     /// * `AppResult<Self>` - The loaded menu or an error
     pub fn new() -> AppResult<Self> {
-        let content = fs::read_to_string(
-            std::env::var("MENU_FILE").unwrap_or_else(|_| "static/menu.json".to_string()),
-        )?;
+        info!("Loading menu configuration");
+        let menu_path =
+            std::env::var("MENU_FILE").unwrap_or_else(|_| "static/menu.json".to_string());
+        debug!("Reading menu from: {}", menu_path);
+        let content = fs::read_to_string(menu_path)?;
         let items: Vec<MenuItem> = serde_json::from_str(&content)?;
+        debug!("Loaded {} menu items", items.len());
         Ok(Menu { items })
     }
 
@@ -88,52 +92,124 @@ impl Menu {
     /// # Returns
     /// * `AppResult<ItemStatus>` - The validation status of the item
     pub fn validate_item(&self, item: &OrderItem) -> AppResult<ItemStatus> {
-        // NOTE(dev): This function essentially provides hints to GPT on what is needs to be changed
-        //            The wording could be improved to prompt GPT better
-        let menu_item = self.items.iter().find(|i| i.item_name == item.item_name);
+        debug!(
+            "Starting validation for item: {} (ID: {})",
+            item.item_name, item.id
+        );
+
         if item.option_keys.len() != item.option_values.len() {
+            info!(
+                "Invalid item: Option keys and values do not match for {} (ID: {}). Keys: {}, Values: {}",
+                item.item_name,
+                item.id,
+                item.option_keys.len(),
+                item.option_values.len()
+            );
             return Ok(ItemStatus::Invalid(
                 "Option keys and values do not match".to_string(),
             ));
         }
+
+        let menu_item = self.items.iter().find(|i| i.item_name == item.item_name);
+        debug!("Found menu item definition: {}", menu_item.is_some());
+
         for (option_key, option_values) in
             Iterator::zip(item.option_keys.iter(), item.option_values.iter())
         {
             if menu_item.is_none() {
+                info!(
+                    "Item not found in menu: {} (ID: {})",
+                    item.item_name, item.id
+                );
                 return Ok(ItemStatus::Invalid(format!(
                     "Item does not exist: {}",
                     item.item_name
                 )));
             }
             let option = menu_item.unwrap().options.get(option_key);
+            debug!(
+                "Validating option '{}' for item {} (ID: {}). Option exists: {}",
+                option_key,
+                item.item_name,
+                item.id,
+                option.is_some()
+            );
+
             if option.is_none() {
+                info!(
+                    "Invalid option '{}' for item {} (ID: {})",
+                    option_key, item.item_name, item.id
+                );
                 return Ok(ItemStatus::Invalid(format!(
                     "Option does not exist: {}",
                     option_key
                 )));
             }
             let option = option.unwrap();
+
             for value in option_values {
+                debug!(
+                    "Checking value '{}' for option '{}' in item {} (ID: {})",
+                    value, option_key, item.item_name, item.id
+                );
                 if !option.choices.contains_key(value) {
+                    info!(
+                        "Invalid choice '{}' for option '{}' in item {} (ID: {})",
+                        value, option_key, item.item_name, item.id
+                    );
                     return Ok(ItemStatus::Invalid(format!(
                         "Invalid choice for option {}: {}",
                         option_key, value
                     )));
                 }
             }
+
+            debug!(
+                "Checking option count for '{}'. Min: {}, Max: {}, Current: {}",
+                option_key,
+                option.minimum,
+                option.maximum,
+                option_values.len()
+            );
+
             if option_values.len() < option.minimum as usize {
+                info!(
+                    "Too few options for {} (ID: {}). Required: {}, Found: {}",
+                    item.item_name,
+                    item.id,
+                    option.minimum,
+                    option_values.len()
+                );
                 return Ok(ItemStatus::Incomplete("Too few options".to_string()));
             }
             if option_values.len() > option.maximum as usize {
+                info!(
+                    "Too many options for {} (ID: {}). Maximum: {}, Found: {}",
+                    item.item_name,
+                    item.id,
+                    option.maximum,
+                    option_values.len()
+                );
                 return Ok(ItemStatus::Invalid("Too many options".to_string()));
             }
         }
 
-        // NOTE(dev): Validate that all required options are present
+        debug!(
+            "Validating required options for item {} (ID: {})",
+            item.item_name, item.id
+        );
         for (option_name, option_config) in menu_item.unwrap().options.iter() {
             match &option_config.required {
                 RequirementConfig::Simple(true) => {
-                    if !item.option_keys.contains(&option_name) {
+                    debug!(
+                        "Checking required option '{}' for item {} (ID: {})",
+                        option_name, item.item_name, item.id
+                    );
+                    if !item.option_keys.contains(option_name) {
+                        info!(
+                            "Missing required option '{}' for item {} (ID: {})",
+                            option_name, item.item_name, item.id
+                        );
                         return Ok(ItemStatus::Incomplete(format!(
                             "Required option missing {}",
                             option_name
@@ -141,39 +217,57 @@ impl Menu {
                     }
                 }
                 RequirementConfig::Dependent { option, value } => {
+                    debug!(
+                        "Checking dependent option '{}' (depends on '{}' = '{}') for item {} (ID: {})",
+                        option_name, option, value, item.item_name, item.id
+                    );
                     let item_option_index = item.option_keys.iter().position(|x| x == option_name);
                     match item_option_index {
                         None => {
-                            // NOTE(dev): If the option is not present, we need to check if the dependent option is present
                             let dependent_option_index =
                                 item.option_keys.iter().position(|x| x == option);
-                            // NOTE(dev): If the dependent option is not present, it is incomplete
                             if dependent_option_index.is_none() {
+                                info!(
+                                    "Missing dependent option '{}' for item {} (ID: {})",
+                                    option, item.item_name, item.id
+                                );
                                 return Ok(ItemStatus::Incomplete(format!(
                                     "Dependent option missing {}",
                                     option
                                 )));
-                            };
-                            // NOTE(dev): If the dependent option is present, we need to check the value
-                            let dependent_option_value =
-                                item.option_values.get(dependent_option_index.unwrap()).expect(
-                                    "The dependent option value should exist if the dependent option exists",
-                                );
-                            // NOTE(dev): If the dependent option contains the dependent value, the item is incomplete
+                            }
+
+                            let dependent_option_value = item.option_values
+                                .get(dependent_option_index.unwrap())
+                                .expect("The dependent option value should exist if the dependent option exists");
+
+                            debug!(
+                                "Checking dependent value '{}' against current values {:?}",
+                                value, dependent_option_value
+                            );
+
                             if dependent_option_value.contains(value) {
+                                info!(
+                                    "Missing required dependent option '{}' for item {} (ID: {})",
+                                    option_name, item.item_name, item.id
+                                );
                                 return Ok(ItemStatus::Incomplete(format!(
                                     "Dependent option missing {}",
                                     option_name
                                 )));
                             }
                         }
-                        // NOTE(dev): If the option is present, we don't need to check the dependent option
                         _ => {}
                     }
                 }
                 _ => {}
             }
         }
+
+        debug!(
+            "Validation successful for item {} (ID: {})",
+            item.item_name, item.id
+        );
         Ok(ItemStatus::Complete("Item is valid".to_string()))
     }
 }

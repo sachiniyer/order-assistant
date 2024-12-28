@@ -92,6 +92,8 @@ impl Menu {
     /// # Returns
     /// * `AppResult<ItemStatus>` - The validation status of the item
     pub fn validate_item(&self, item: &OrderItem) -> AppResult<ItemStatus> {
+        // NOTE(dev): This function essentially provides hints to GPT on what is needs to be changed
+        //            The wording/information could be improved/expanded to prompt GPT better
         debug!(
             "Starting validation for item: {} (ID: {})",
             item.item_name, item.id
